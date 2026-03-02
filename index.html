@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FDFBF7;
+  --fg: #1A1A1A;
+  --dim: #999;
+  --border: #E8E0D4;
+  --accent: #8B7355;
+  --safe-top: env(safe-area-inset-top, 20px);
+  --safe-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px 0;
+}
+
+.topbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.topbar h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.topbar-actions button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--dim);
+  padding: 4px;
+}
+
+/* Day tabs */
+.day-tabs {
+  display: flex;
+  gap: 2px;
+  padding-bottom: 10px;
+}
+
+.day-tab {
+  flex: 1;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dim);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  border: none;
+  background: none;
+}
+
+.day-tab.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.day-tab.today:not(.active) {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Active ritual banner */
+.ritual-banner {
+  display: none;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(139,115,85,0.08), rgba(139,115,85,0.03));
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.ritual-banner.visible { display: flex; align-items: center; gap: 10px; }
+
+.ritual-banner .child-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ritual-banner .info { flex: 1; }
+.ritual-banner .info .name { font-size: 12px; font-weight: 600; }
+.ritual-banner .info .step { font-size: 11px; color: var(--dim); }
+.ritual-banner .timer {
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Agenda grid */
+.agenda {
+  display: flex;
+  padding: 0 8px;
+  min-height: calc(100dvh - 120px);
+}
+
+.time-col {
+  width: 40px;
+  flex-shrink: 0;
+  padding-top: 36px;
+}
+
+.time-label {
+  height: 80px;
+  font-size: 10px;
+  color: #bbb;
+  text-align: right;
+  padding-right: 6px;
+}
+
+.child-col {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0;
+}
+
+.child-col-header {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.child-col-header .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.hour-grid {
+  position: relative;
+}
+
+.hour-line {
+  height: 80px;
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Schedule blocks */
+.block {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  border-radius: 8px;
+  padding: 6px 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+}
+
+.block:active {
+  transform: scale(0.97);
+}
+
+.block.running {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px currentColor;
+  animation: blockPulse 2s ease-in-out infinite;
+}
+
+@keyframes blockPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.block-icon { font-size: 14px; }
+.block-name { font-size: 11px; font-weight: 600; margin-top: 1px; }
+.block-time { font-size: 9px; opacity: 0.7; }
+.block-steps { font-size: 9px; opacity: 0.6; margin-top: 2px; }
+
+/* Add block button */
+.add-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 3px;
+  padding: 8px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--dim);
+  cursor: pointer;
+  background: none;
+  width: calc(100% - 6px);
+  transition: border-color 0.2s;
+}
+
+.add-block:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Ritual view */
+.ritual-view {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  flex-direction: column;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.ritual-view.visible { display: flex; }
+
+.ritual-header {
+  padding: 60px 24px 20px;
+  text-align: center;
+}
+
+.ritual-child-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.ritual-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: all 0.3s;
+}
+
+.step-dot.done { background: var(--accent); }
+.step-dot.current { background: rgba(139,115,85,0.5); transform: scale(1.3); }
+
+.ritual-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.step-icon-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.phase-label {
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Timer ring */
+.timer-ring-wrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+.timer-ring-wrap svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-ring-bg {
+  fill: none;
+  stroke: rgba(0,0,0,0.06);
+  stroke-width: 8;
+}
+
+.timer-ring-progress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-number {
+  font-size: 48px;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-sub {
+  font-size: 12px;
+  color: var(--dim);
+}
+
+/* Payoff */
+.payoff-view, .complete-view {
+  text-align: center;
+}
+
+.payoff-check {
+  font-size: 72px;
+  color: #4CAF50;
+  margin-bottom: 12px;
+}
+
+.payoff-name {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.payoff-label {
+  font-size: 18px;
+  color: #4CAF50;
+}
+
+.payoff-progress {
+  font-size: 14px;
+  color: var(--dim);
+  margin-top: 12px;
+}
+
+.complete-stars {
+  font-size: 36px;
+  letter-spacing: 12px;
+  margin-bottom: 16px;
+}
+
+.complete-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.ritual-bottom {
+  padding: 20px 32px 50px;
+}
+
+.ritual-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.ritual-secondary {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.ritual-secondary button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--dim);
+}
+
+.ritual-secondary button.stop { color: rgba(220,80,80,0.6); }
+
+.back-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 210;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+/* Settings panel */
+.settings-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--bg);
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.settings-overlay.visible { display: block; }
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+}
+
+.settings-header h2 { font-size: 18px; font-weight: 700; }
+
+.settings-done {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.settings-section {
+  padding: 16px;
+}
+
+.settings-section h3 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  margin-bottom: 12px;
+}
+
+.child-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.child-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.child-row .name { flex: 1; font-size: 15px; }
+
+.child-row .remove {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.add-child-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+  align-items: center;
+}
+
+.add-child-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+}
+
+.color-pick {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.color-pick.selected { border-color: var(--fg); }
+
+.add-child-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.transition-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  cursor: pointer;
+}
+.transition-row:active { opacity: 0.7; }
+
+.transition-row .icon {
+  font-size: 18px;
+  width: 28px;
+  text-align: center;
+}
+
+.transition-row .info { flex: 1; }
+.transition-row .info .name { font-size: 14px; font-weight: 500; }
+.transition-row .info .steps { font-size: 11px; color: var(--dim); }
+.transition-row .chevron { font-size: 14px; color: var(--dim); }
+
+/* Transition detail editor */
+.transition-detail { padding: 0 0 12px; }
+.step-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0 6px 38px;
+}
+.step-edit-row .step-icon { font-size: 14px; width: 20px; text-align: center; cursor: pointer; }
+.step-edit-row input {
+  flex: 1;
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: inherit;
+  color: var(--fg);
+}
+.step-edit-row input:focus { outline: none; border-color: var(--accent); }
+.step-edit-row .step-dur {
+  width: 52px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--dim);
+}
+.step-edit-row .step-remove {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--dim);
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.step-edit-row .step-remove:hover { color: #FF3B30; }
+.add-step-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0 6px 38px;
+}
+.add-step-row button {
+  background: none;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--dim);
+  cursor: pointer;
+  font-family: inherit;
+}
+.add-step-row button:hover { border-color: var(--accent); color: var(--accent); }
+.add-transition-row {
+  padding: 10px 0;
+}
+.add-transition-row button {
+  background: none;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--dim);
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+}
+.add-transition-row button:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Block edit sheet */
+.block-sheet-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 200;
+  align-items: flex-end;
+  justify-content: center;
+}
+.block-sheet-overlay.visible { display: flex; }
+.block-sheet {
+  background: var(--bg);
+  border-radius: 16px 16px 0 0;
+  padding: 20px 20px calc(var(--safe-bottom) + 12px);
+  width: 100%;
+  max-width: 430px;
+  animation: sheetUp 0.25s ease-out;
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.block-sheet h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.block-sheet h3 button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+}
+.sheet-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sheet-row label {
+  font-size: 13px;
+  color: var(--dim);
+  width: 50px;
+  flex-shrink: 0;
+}
+.sheet-row input[type="time"] {
+  font-size: 22px;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  flex: 1;
+  text-align: center;
+}
+.sheet-row input[type="time"]:focus { outline: none; border-color: var(--accent); }
+.sheet-transition-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.sheet-tr-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--fg);
+  transition: all 0.15s;
+}
+.sheet-tr-btn.active {
+  border-color: var(--accent);
+  background: rgba(139,115,85,0.08);
+  font-weight: 600;
+}
+.sheet-tr-btn .tr-icon { font-size: 16px; }
+.sheet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.sheet-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+.sheet-save {
+  background: var(--accent);
+  color: #fff;
+}
+.sheet-delete {
+  background: none;
+  border: 1px solid #FF3B30 !important;
+  color: #FF3B30;
+}
+.transition-name-input {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: inherit;
+  color: var(--fg);
+  width: 120px;
+}
+.transition-name-input:focus { outline: none; border-color: var(--accent); }
+.transition-remove {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--dim);
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.transition-remove:hover { color: #FF3B30; }
+</style>
+</head>
+<body>
+
+<!-- ===== DASHBOARD VIEW ===== -->
+<div id="dashboard-view">
+  <div class="topbar">
+    <div class="topbar-row">
+      <h1>Guide</h1>
+      <div class="topbar-actions">
+        <button onclick="showSettings()">⚙</button>
+      </div>
+    </div>
+    <div class="day-tabs" id="day-tabs"></div>
+  </div>
+
+  <div class="ritual-banner" id="ritual-banner" onclick="openRitual()"></div>
+
+  <div class="agenda" id="agenda"></div>
+</div>
+
+<!-- ===== RITUAL VIEW ===== -->
+<div class="ritual-view" id="ritual-view">
+  <button class="back-btn" onclick="closeRitual()">‹ Agenda</button>
+  <div class="ritual-header" id="ritual-header"></div>
+  <div class="ritual-center" id="ritual-center"></div>
+  <div class="ritual-bottom" id="ritual-bottom"></div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="settings-overlay" id="settings-overlay">
+  <div class="settings-header">
+    <h2>Instellingen</h2>
+    <button class="settings-done" onclick="hideSettings()">Klaar</button>
+  </div>
+  <div id="settings-content"></div>
+</div>
+
+<!-- Block edit sheet -->
+<div class="block-sheet-overlay" id="block-sheet-overlay" onclick="if(event.target===this)closeSheet()">
+  <div class="block-sheet" id="block-sheet"></div>
+</div>
+
+<script>
+// ===== DATA =====
+const COLORS = {
+  blue: '#3478F6', orange: '#FF9500', green: '#34C759', purple: '#AF52DE',
+  pink: '#FF2D55', teal: '#5AC8FA', indigo: '#5856D6', red: '#FF3B30',
+};
+
+const COLOR_NAMES = {
+  blue: 'Blauw', orange: 'Oranje', green: 'Groen', purple: 'Paars',
+  pink: 'Roze', teal: 'Turquoise', indigo: 'Indigo', red: 'Rood',
+};
+
+const DEFAULT_TRANSITIONS = [
+  { id: 'morning', name: 'Ochtend', icon: '☀️', colorName: 'orange', steps: [
+    { id: 'wake', name: 'Opstaan', icon: '🛏', dur: 120, warn: 60 },
+    { id: 'dress', name: 'Aankleden', icon: '👕', dur: 180, warn: 60 },
+    { id: 'breakfast', name: 'Ontbijten', icon: '☕', dur: 600, warn: 60 },
+  ]},
+  { id: 'football', name: 'Voetbal', icon: '⚽', colorName: 'green', steps: [
+    { id: 'kit', name: 'Voetbalkleren', icon: '🏃', dur: 120, warn: 30 },
+    { id: 'bag', name: 'Tas pakken', icon: '🎒', dur: 60, warn: 30 },
+    { id: 'shoes', name: 'Schoenen', icon: '👟', dur: 60, warn: 30 },
+  ]},
+  { id: 'lunch', name: 'Middageten', icon: '🍽', colorName: 'teal', steps: [
+    { id: 'table', name: 'Tafel dekken', icon: '🍽', dur: 120, warn: 60 },
+    { id: 'wash', name: 'Handen wassen', icon: '🧼', dur: 60, warn: 30 },
+    { id: 'sit', name: 'Komen zitten', icon: '🪑', dur: 60, warn: 30 },
+  ]},
+  { id: 'dinner', name: 'Avondeten', icon: '🍽', colorName: 'green', steps: [
+    { id: 'table', name: 'Tafel dekken', icon: '🍽', dur: 120, warn: 60 },
+    { id: 'wash', name: 'Handen wassen', icon: '🧼', dur: 60, warn: 30 },
+    { id: 'sit', name: 'Komen zitten', icon: '🪑', dur: 60, warn: 30 },
+  ]},
+  { id: 'bedtime', name: 'Bedtijd', icon: '🌙', colorName: 'indigo', steps: [
+    { id: 'pyjama', name: 'Pyjama aan', icon: '🌙', dur: 120, warn: 60 },
+    { id: 'teeth', name: 'Tanden poetsen', icon: '🪥', dur: 120, warn: 60 },
+    { id: 'story', name: 'Boekje lezen', icon: '📖', dur: 300, warn: 60 },
+  ]},
+];
+
+// State
+let state = JSON.parse(localStorage.getItem('guide-state') || 'null') || {
+  children: [
+    { id: 'c1', name: 'Mats', colorName: 'blue' },
+    { id: 'c2', name: 'Lena', colorName: 'orange' },
+  ],
+  transitions: DEFAULT_TRANSITIONS,
+  schedules: buildDefaultSchedules(),
+};
+
+let selectedDay = new Date().getDay() || 7; // 1=ma...7=zo, convert from JS 0=zo
+if (selectedDay === 0) selectedDay = 7;
+// Convert to our format: 2=ma...7=za, 1=zo
+const jsToCalDay = d => d === 0 ? 1 : d + 1;
+selectedDay = jsToCalDay(new Date().getDay());
+
+let activeRituals = {}; // childID -> { transition, phase, stepIdx, remaining, completed, timer }
+let selectedRitualChild = null;
+
+function save() {
+  localStorage.setItem('guide-state', JSON.stringify(state));
+}
+
+function buildDefaultSchedules() {
+  const scheds = {};
+  for (let d = 1; d <= 7; d++) {
+    scheds[d] = [];
+  }
+  // For each day, add morning/lunch/dinner/bedtime for both kids
+  const defaultBlocks = [
+    { tid: 'morning', h: 7, m: 15 },
+    { tid: 'lunch', h: 12, m: 0 },
+    { tid: 'dinner', h: 17, m: 30 },
+    { tid: 'bedtime', h: 19, m: 0 },
+  ];
+  for (let d = 1; d <= 7; d++) {
+    ['c1', 'c2'].forEach(cid => {
+      defaultBlocks.forEach(b => {
+        scheds[d].push({ id: rnd(), childID: cid, transitionID: b.tid, h: b.h, m: b.m });
+      });
+      if (d === 7) { // zaterdag
+        scheds[d].push({ id: rnd(), childID: cid, transitionID: 'football', h: 8, m: 0 });
+      }
+    });
+  }
+  return scheds;
+}
+
+function rnd() { return Math.random().toString(36).substr(2, 9); }
+
+// ===== RENDERING =====
+
+const DAY_NAMES = { 1:'zo', 2:'ma', 3:'di', 4:'wo', 5:'do', 6:'vr', 7:'za' };
+const TODAY = jsToCalDay(new Date().getDay());
+const HOUR_START = 6, HOUR_END = 21, HOUR_H = 80;
+
+function render() {
+  renderDayTabs();
+  renderAgenda();
+  renderBanner();
+}
+
+function renderDayTabs() {
+  const el = document.getElementById('day-tabs');
+  // Show ma-za, zo
+  const order = [2,3,4,5,6,7,1];
+  el.innerHTML = order.map(d => {
+    const cls = [
+      'day-tab',
+      d === selectedDay ? 'active' : '',
+      d === TODAY ? 'today' : '',
+    ].join(' ');
+    return `<button class="${cls}" onclick="selectDay(${d})">${DAY_NAMES[d]}</button>`;
+  }).join('');
+}
+
+function renderAgenda() {
+  const el = document.getElementById('agenda');
+  const entries = (state.schedules[selectedDay] || []);
+
+  let html = '<div class="time-col">';
+  for (let h = HOUR_START; h <= HOUR_END; h++) {
+    html += `<div class="time-label">${String(h).padStart(2,'0')}:00</div>`;
+  }
+  html += '</div>';
+
+  state.children.forEach(child => {
+    const color = COLORS[child.colorName] || '#888';
+    const childEntries = entries.filter(e => e.childID === child.id)
+      .sort((a,b) => (a.h*60+a.m) - (b.h*60+b.m));
+
+    html += `<div class="child-col">`;
+    html += `<div class="child-col-header"><span class="dot" style="background:${color}"></span>${child.name}</div>`;
+    html += `<div class="hour-grid" style="position:relative">`;
+
+    for (let h = HOUR_START; h <= HOUR_END; h++) {
+      html += `<div class="hour-line"></div>`;
+    }
+
+    childEntries.forEach(entry => {
+      const tr = state.transitions.find(t => t.id === entry.transitionID);
+      if (!tr) return;
+      const y = ((entry.h - HOUR_START) + entry.m / 60) * HOUR_H;
+      const dur = tr.steps.reduce((s, st) => s + st.dur + st.warn, 0);
+      const h = Math.max(40, (dur / 3600) * HOUR_H);
+      const trColor = COLORS[tr.colorName] || color;
+      const isRunning = activeRituals[child.id]?.transition.id === tr.id;
+      const runCls = isRunning ? 'running' : '';
+
+      html += `<div class="block ${runCls}" style="top:${y}px;height:${h}px;background:${trColor};color:${trColor}" onclick="openSheet('${entry.id}','${child.id}')" oncontextmenu="event.preventDefault();openSheet('${entry.id}','${child.id}')">`;
+      html += `<div class="block-icon" style="color:#fff">${tr.icon}</div>`;
+      html += `<div class="block-name" style="color:#fff">${tr.name}</div>`;
+      html += `<div class="block-time" style="color:rgba(255,255,255,0.7)">${String(entry.h).padStart(2,'0')}:${String(entry.m).padStart(2,'0')}</div>`;
+      if (h > 55) {
+        html += `<div class="block-steps" style="color:rgba(255,255,255,0.6)">${tr.steps.map(s=>s.name).join(' · ')}</div>`;
+      }
+      html += `</div>`;
+    });
+
+    html += `<button class="add-block" onclick="addBlock('${child.id}')">+ Blok</button>`;
+    html += `</div></div>`;
+  });
+
+  el.innerHTML = html;
+}
+
+function renderBanner() {
+  const el = document.getElementById('ritual-banner');
+  const keys = Object.keys(activeRituals);
+  if (keys.length === 0) {
+    el.classList.remove('visible');
+    return;
+  }
+
+  const cid = keys[0];
+  const r = activeRituals[cid];
+  const child = state.children.find(c => c.id === cid);
+  if (!child || !r) return;
+
+  const color = COLORS[child.colorName] || '#888';
+  const step = r.transition.steps[r.stepIdx];
+
+  el.classList.add('visible');
+  el.innerHTML = `
+    <div class="child-dot" style="background:${color}"></div>
+    <div class="info">
+      <div class="name">${child.name}: ${r.transition.name}</div>
+      <div class="step">${step ? step.name : 'Klaar'}</div>
+    </div>
+    <div class="timer" style="color:${r.phase==='warning'?'#FF9500':color}">${fmtTime(r.remaining)}</div>
+    <span style="color:#ccc;font-size:12px">›</span>
+  `;
+}
+
+// ===== RITUAL ENGINE =====
+
+function startRitual(childID, transitionID) {
+  const tr = state.transitions.find(t => t.id === transitionID);
+  if (!tr || tr.steps.length === 0) return;
+
+  if (activeRituals[childID]) {
+    selectedRitualChild = childID;
+    renderRitualView();
+    return;
+  }
+
+  activeRituals[childID] = {
+    transition: tr,
+    phase: 'warning', // warning -> active -> payoff -> complete
+    stepIdx: 0,
+    remaining: tr.steps[0].warn,
+    completed: [],
+    timer: null,
+  };
+
+  selectedRitualChild = childID;
+  startTick(childID);
+  renderRitualView();
+  renderBanner();
+  renderAgenda();
+}
+
+function startTick(childID) {
+  const r = activeRituals[childID];
+  if (!r) return;
+  clearInterval(r.timer);
+  r.timer = setInterval(() => tick(childID), 1000);
+}
+
+function tick(childID) {
+  const r = activeRituals[childID];
+  if (!r) return;
+
+  if (r.remaining > 0) {
+    r.remaining--;
+    // Haptic pulse simulation
+    if (r.phase === 'active' && r.remaining > 0) {
+      const interval = r.remaining <= 60 ? 15 : 30;
+      if (r.remaining % interval === 0 && navigator.vibrate) navigator.vibrate(50);
+    }
+  } else {
+    if (r.phase === 'warning') {
+      r.phase = 'active';
+      r.remaining = r.transition.steps[r.stepIdx].dur;
+      if (navigator.vibrate) navigator.vibrate([50, 50, 50]);
+    } else if (r.phase === 'active') {
+      completeCurrentStep(childID);
+      return;
+    }
+  }
+
+  if (selectedRitualChild === childID) renderRitualView();
+  renderBanner();
+}
+
+function completeCurrentStep(childID) {
+  const r = activeRituals[childID];
+  if (!r) return;
+  clearInterval(r.timer);
+
+  if (r.phase === 'warning') {
+    r.phase = 'active';
+    r.remaining = r.transition.steps[r.stepIdx].dur;
+    startTick(childID);
+    if (selectedRitualChild === childID) renderRitualView();
+    return;
+  }
+
+  const step = r.transition.steps[r.stepIdx];
+  r.completed.push(step.id);
+  r.phase = 'payoff';
+  if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+
+  if (selectedRitualChild === childID) renderRitualView();
+  renderBanner();
+
+  setTimeout(() => {
+    r.stepIdx++;
+    if (r.stepIdx >= r.transition.steps.length) {
+      r.phase = 'complete';
+      if (selectedRitualChild === childID) renderRitualView();
+      renderBanner();
+      setTimeout(() => {
+        stopRitual(childID);
+        if (selectedRitualChild === childID) closeRitual();
+      }, 4000);
+    } else {
+      r.phase = 'warning';
+      r.remaining = r.transition.steps[r.stepIdx].warn;
+      startTick(childID);
+      if (selectedRitualChild === childID) renderRitualView();
+    }
+  }, 2000);
+}
+
+function skipStep(childID) {
+  const r = activeRituals[childID];
+  if (!r) return;
+  clearInterval(r.timer);
+  r.stepIdx++;
+  if (r.stepIdx >= r.transition.steps.length) {
+    stopRitual(childID);
+    closeRitual();
+  } else {
+    r.phase = 'warning';
+    r.remaining = r.transition.steps[r.stepIdx].warn;
+    startTick(childID);
+    renderRitualView();
+  }
+}
+
+function stopRitual(childID) {
+  const r = activeRituals[childID];
+  if (r) clearInterval(r.timer);
+  delete activeRituals[childID];
+  renderBanner();
+  renderAgenda();
+}
+
+function fmtTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return m > 0 ? `${m}:${String(sec).padStart(2,'0')}` : `${sec}`;
+}
+
+// ===== RITUAL VIEW =====
+
+function openRitual() {
+  const keys = Object.keys(activeRituals);
+  if (keys.length > 0) selectedRitualChild = keys[0];
+  renderRitualView();
+}
+
+function closeRitual() {
+  document.getElementById('ritual-view').classList.remove('visible');
+  selectedRitualChild = null;
+}
+
+function renderRitualView() {
+  const rv = document.getElementById('ritual-view');
+  const cid = selectedRitualChild;
+  if (!cid || !activeRituals[cid]) { rv.classList.remove('visible'); return; }
+
+  rv.classList.add('visible');
+  const r = activeRituals[cid];
+  const child = state.children.find(c => c.id === cid);
+  const color = COLORS[child?.colorName] || '#888';
+  const tr = r.transition;
+  const step = tr.steps[r.stepIdx];
+
+  // Background
+  let bg = '#FDFBF7';
+  if (r.phase === 'payoff' || r.phase === 'complete') bg = '#f2f9f2';
+  else if (r.phase === 'warning') bg = '#fff8f0';
+  rv.style.background = bg;
+
+  // Header
+  document.getElementById('ritual-header').innerHTML = `
+    <div class="ritual-child-badge" style="background:${color}">${child?.name || '?'}</div>
+    <div class="ritual-name">${tr.icon} ${tr.name}</div>
+    <div class="step-dots">
+      ${tr.steps.map((s, i) => {
+        let cls = 'step-dot';
+        if (r.completed.includes(s.id)) cls += ' done';
+        else if (i === r.stepIdx) cls += ' current';
+        return `<div class="${cls}" style="${r.completed.includes(s.id) ? 'background:'+color : ''}"></div>`;
+      }).join('')}
+    </div>
+  `;
+
+  // Center
+  const center = document.getElementById('ritual-center');
+  if (r.phase === 'complete') {
+    center.innerHTML = `
+      <div class="complete-view">
+        <div class="complete-stars">⭐⭐⭐</div>
+        <div class="complete-title">${tr.name}</div>
+        <div style="font-size:20px;color:${color}">Helemaal klaar!</div>
+        <div class="payoff-progress">Alle ${tr.steps.length} stappen gehaald</div>
+      </div>
+    `;
+  } else if (r.phase === 'payoff') {
+    const doneStep = step || tr.steps[r.stepIdx - 1];
+    center.innerHTML = `
+      <div class="payoff-view">
+        <div class="payoff-check">✓</div>
+        <div class="payoff-name">${doneStep?.name || ''}</div>
+        <div class="payoff-label">Gehaald!</div>
+        <div class="payoff-progress">${r.completed.length} van ${tr.steps.length}</div>
+      </div>
+    `;
+  } else {
+    const total = r.phase === 'warning' ? step.warn : step.dur;
+    const progress = total > 0 ? (1 - r.remaining / total) : 0;
+    const circ = 2 * Math.PI * 82;
+    const dashOffset = circ * (1 - progress);
+    const strokeColor = r.phase === 'warning' ? '#FF9500' : color;
+
+    center.innerHTML = `
+      <div class="step-icon-circle" style="background:${color}20">${step.icon}</div>
+      <div class="phase-label">${r.phase === 'warning'
+        ? `${step.name} over ${fmtTime(r.remaining)}`
+        : step.name}</div>
+      <div class="timer-ring-wrap">
+        <svg viewBox="0 0 180 180">
+          <circle class="timer-ring-bg" cx="90" cy="90" r="82" />
+          <circle class="timer-ring-progress" cx="90" cy="90" r="82"
+            stroke="${strokeColor}" stroke-dasharray="${circ}" stroke-dashoffset="${dashOffset}" />
+        </svg>
+        <div class="timer-text">
+          <div class="timer-number">${fmtTime(r.remaining)}</div>
+          <div class="timer-sub">${r.phase === 'warning' ? 'voorbereiding' : 'bezig'}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Bottom
+  const bottom = document.getElementById('ritual-bottom');
+  if (r.phase === 'complete' || r.phase === 'payoff') {
+    bottom.innerHTML = '';
+  } else {
+    const btnLabel = r.phase === 'warning' ? 'Nu beginnen' : 'Klaar!';
+    bottom.innerHTML = `
+      <button class="ritual-btn" style="background:${color}" onclick="completeCurrentStep('${cid}')">${btnLabel}</button>
+      <div class="ritual-secondary">
+        <button onclick="skipStep('${cid}')">Sla over</button>
+        <button class="stop" onclick="stopRitual('${cid}');closeRitual()">Stop</button>
+      </div>
+    `;
+  }
+}
+
+// ===== SETTINGS =====
+
+function showSettings() {
+  document.getElementById('settings-overlay').classList.add('visible');
+  renderSettings();
+}
+
+function hideSettings() {
+  document.getElementById('settings-overlay').classList.remove('visible');
+  save();
+  render();
+}
+
+function renderSettings() {
+  const el = document.getElementById('settings-content');
+  const colorKeys = Object.keys(COLORS);
+  const usedColors = new Set(state.children.map(c => c.colorName));
+  const nextColor = colorKeys.find(c => !usedColors.has(c)) || 'blue';
+
+  el.innerHTML = `
+    <div class="settings-section">
+      <h3>Kinderen</h3>
+      ${state.children.map(c => `
+        <div class="child-row">
+          <div class="child-avatar" style="background:${COLORS[c.colorName]}">${c.name[0]}</div>
+          <div class="name">${c.name}</div>
+          <button class="remove" onclick="removeChild('${c.id}')">×</button>
+        </div>
+      `).join('')}
+      <div class="add-child-row">
+        <div id="new-color-dot" class="color-pick selected" style="background:${COLORS[nextColor]}" onclick="cycleNewColor()"></div>
+        <input id="new-child-name" placeholder="Naam" />
+        <button class="add-child-btn" onclick="addChild()">+</button>
+      </div>
+      <input type="hidden" id="new-child-color" value="${nextColor}" />
+    </div>
+    <div class="settings-section">
+      <h3>Blokken</h3>
+      ${state.transitions.map(t => `
+        <div class="transition-row" onclick="toggleTransitionEdit('${t.id}')">
+          <div class="icon">${t.icon}</div>
+          <div class="info">
+            <div class="name">${t.name}</div>
+            <div class="steps">${t.steps.length} stappen</div>
+          </div>
+          <div class="chevron">${expandedTransition === t.id ? '▾' : '›'}</div>
+        </div>
+        ${expandedTransition === t.id ? `
+          <div class="transition-detail">
+            <div class="step-edit-row" style="padding-left:28px;">
+              <input class="transition-name-input" value="${t.name}" oninput="renameTransition('${t.id}', this.value)" onclick="event.stopPropagation()" />
+              <button class="transition-remove" onclick="event.stopPropagation(); removeTransition('${t.id}')" title="Verwijder blok">×</button>
+            </div>
+            ${t.steps.map((s, si) => `
+              <div class="step-edit-row">
+                <div class="step-icon">${s.icon || '●'}</div>
+                <input value="${s.name}" oninput="renameStep('${t.id}', ${si}, this.value)" placeholder="Stap naam" />
+                <input class="step-dur" type="number" value="${Math.round(s.dur / 60)}" min="1" max="60" oninput="setStepDur('${t.id}', ${si}, this.value)" title="Minuten" />m
+                <button class="step-remove" onclick="removeStep('${t.id}', ${si})">×</button>
+              </div>
+            `).join('')}
+            <div class="add-step-row">
+              <button onclick="addStep('${t.id}')">+ Stap toevoegen</button>
+            </div>
+          </div>
+        ` : ''}
+      `).join('')}
+      <div class="add-transition-row">
+        <button onclick="addTransition()">+ Nieuw blok</button>
+      </div>
+    </div>
+  `;
+}
+
+let newColorIdx = 0;
+function cycleNewColor() {
+  const keys = Object.keys(COLORS);
+  newColorIdx = (newColorIdx + 1) % keys.length;
+  const c = keys[newColorIdx];
+  document.getElementById('new-color-dot').style.background = COLORS[c];
+  document.getElementById('new-child-color').value = c;
+}
+
+function addChild() {
+  const name = document.getElementById('new-child-name').value.trim();
+  if (!name) return;
+  const colorName = document.getElementById('new-child-color').value;
+  const child = { id: rnd(), name, colorName };
+  state.children.push(child);
+
+  // Add default schedule entries for this child
+  const blocks = [
+    { tid: 'morning', h: 7, m: 15 }, { tid: 'lunch', h: 12, m: 0 },
+    { tid: 'dinner', h: 17, m: 30 }, { tid: 'bedtime', h: 19, m: 0 },
+  ];
+  for (let d = 1; d <= 7; d++) {
+    if (!state.schedules[d]) state.schedules[d] = [];
+    blocks.forEach(b => {
+      state.schedules[d].push({ id: rnd(), childID: child.id, transitionID: b.tid, h: b.h, m: b.m });
+    });
+  }
+
+  save();
+  renderSettings();
+}
+
+function removeChild(id) {
+  state.children = state.children.filter(c => c.id !== id);
+  for (let d = 1; d <= 7; d++) {
+    state.schedules[d] = (state.schedules[d] || []).filter(e => e.childID !== id);
+  }
+  save();
+  renderSettings();
+}
+
+// ===== TRANSITION / STEP EDITING =====
+let expandedTransition = null;
+
+function toggleTransitionEdit(id) {
+  expandedTransition = expandedTransition === id ? null : id;
+  renderSettings();
+}
+
+function renameTransition(id, name) {
+  const t = state.transitions.find(t => t.id === id);
+  if (t) { t.name = name || 'Nieuw blok'; save(); }
+}
+
+function removeTransition(id) {
+  state.transitions = state.transitions.filter(t => t.id !== id);
+  // Remove from all schedules
+  for (let d = 1; d <= 7; d++) {
+    state.schedules[d] = (state.schedules[d] || []).filter(e => e.transitionID !== id);
+  }
+  expandedTransition = null;
+  save();
+  renderSettings();
+}
+
+function addTransition() {
+  const icons = ['📌', '🎯', '🔔', '⭐', '🏠', '🎒', '🛁', '📚'];
+  const colorKeys = Object.keys(COLORS);
+  const t = {
+    id: rnd(),
+    name: 'Nieuw blok',
+    icon: icons[state.transitions.length % icons.length],
+    colorName: colorKeys[state.transitions.length % colorKeys.length],
+    steps: [],
+  };
+  state.transitions.push(t);
+  expandedTransition = t.id;
+  save();
+  renderSettings();
+}
+
+function renameStep(transitionID, stepIdx, name) {
+  const t = state.transitions.find(t => t.id === transitionID);
+  if (t && t.steps[stepIdx]) {
+    t.steps[stepIdx].name = name || 'Nieuwe stap';
+    save();
+  }
+}
+
+function setStepDur(transitionID, stepIdx, minutes) {
+  const t = state.transitions.find(t => t.id === transitionID);
+  if (t && t.steps[stepIdx]) {
+    t.steps[stepIdx].dur = Math.max(60, parseInt(minutes) * 60 || 60);
+    save();
+  }
+}
+
+function removeStep(transitionID, stepIdx) {
+  const t = state.transitions.find(t => t.id === transitionID);
+  if (t) {
+    t.steps.splice(stepIdx, 1);
+    save();
+    renderSettings();
+  }
+}
+
+function addStep(transitionID) {
+  const t = state.transitions.find(t => t.id === transitionID);
+  if (!t) return;
+  const step = { id: rnd(), name: 'Nieuwe stap', icon: '●', dur: 120, warn: 30 };
+  t.steps.push(step);
+  save();
+  renderSettings();
+  // Focus the new step's input after render
+  setTimeout(() => {
+    const inputs = document.querySelectorAll(`.step-edit-row input[placeholder="Stap naam"]`);
+    const last = inputs[inputs.length - 1];
+    if (last) { last.focus(); last.select(); }
+  }, 50);
+}
+
+// ===== BLOCK EDIT SHEET =====
+let editingEntry = null; // { id, childID, transitionID, h, m } or null for new
+
+function addBlock(childID) {
+  // Open sheet for a new block
+  editingEntry = { id: null, childID, transitionID: state.transitions[0]?.id || '', h: 8, m: 0 };
+  renderSheet();
+  document.getElementById('block-sheet-overlay').classList.add('visible');
+}
+
+function openSheet(entryId, childID) {
+  const entries = state.schedules[selectedDay] || [];
+  const entry = entries.find(e => e.id === entryId);
+  if (!entry) return;
+  editingEntry = { ...entry };
+  renderSheet();
+  document.getElementById('block-sheet-overlay').classList.add('visible');
+}
+
+function closeSheet() {
+  document.getElementById('block-sheet-overlay').classList.remove('visible');
+  editingEntry = null;
+}
+
+function renderSheet() {
+  if (!editingEntry) return;
+  const isNew = !editingEntry.id;
+  const child = state.children.find(c => c.id === editingEntry.childID);
+  const timeVal = `${String(editingEntry.h).padStart(2,'0')}:${String(editingEntry.m).padStart(2,'0')}`;
+
+  const sheet = document.getElementById('block-sheet');
+  sheet.innerHTML = `
+    <h3>
+      ${isNew ? 'Nieuw blok' : 'Blok bewerken'}${child ? ` — ${child.name}` : ''}
+      <button onclick="closeSheet()">Klaar</button>
+    </h3>
+    <div class="sheet-row">
+      <label>Tijd</label>
+      <input type="time" id="sheet-time" value="${timeVal}" onchange="editingEntry.h=parseInt(this.value.split(':')[0]);editingEntry.m=parseInt(this.value.split(':')[1])">
+    </div>
+    <div style="font-size:12px;color:var(--dim);margin-bottom:8px;">Blok type</div>
+    <div class="sheet-transition-grid">
+      ${state.transitions.map(t => `
+        <button class="sheet-tr-btn ${t.id === editingEntry.transitionID ? 'active' : ''}" onclick="selectSheetTransition('${t.id}')">
+          <span class="tr-icon">${t.icon}</span>
+          ${t.name}
+        </button>
+      `).join('')}
+    </div>
+    <div class="sheet-actions">
+      ${!isNew ? '<button class="sheet-delete" onclick="deleteBlock()">Verwijder</button>' : ''}
+      <button class="sheet-save" onclick="saveSheet()">${isNew ? 'Toevoegen' : 'Opslaan'}</button>
+    </div>
+    ${!isNew ? '<div style="text-align:center;margin-top:12px;"><button style="background:none;border:none;color:var(--accent);font-size:13px;font-family:inherit;cursor:pointer;" onclick="closeSheet();startRitual(\'' + editingEntry.childID + '\',\'' + editingEntry.transitionID + '\')">▶ Start ritueel</button></div>' : ''}
+  `;
+}
+
+function selectSheetTransition(trId) {
+  editingEntry.transitionID = trId;
+  renderSheet();
+}
+
+function saveSheet() {
+  if (!editingEntry || !editingEntry.transitionID) return;
+  if (!state.schedules[selectedDay]) state.schedules[selectedDay] = [];
+
+  if (editingEntry.id) {
+    // Update existing
+    const entry = state.schedules[selectedDay].find(e => e.id === editingEntry.id);
+    if (entry) {
+      entry.h = editingEntry.h;
+      entry.m = editingEntry.m;
+      entry.transitionID = editingEntry.transitionID;
+    }
+  } else {
+    // Create new
+    state.schedules[selectedDay].push({
+      id: rnd(),
+      childID: editingEntry.childID,
+      transitionID: editingEntry.transitionID,
+      h: editingEntry.h,
+      m: editingEntry.m,
+    });
+  }
+
+  save();
+  closeSheet();
+  renderAgenda();
+}
+
+function deleteBlock() {
+  if (!editingEntry || !editingEntry.id) return;
+  state.schedules[selectedDay] = (state.schedules[selectedDay] || []).filter(e => e.id !== editingEntry.id);
+  save();
+  closeSheet();
+  renderAgenda();
+}
+
+function selectDay(d) {
+  selectedDay = d;
+  render();
+}
+
+// ===== INIT =====
+render();
+</script>
+</body>
+</html>
