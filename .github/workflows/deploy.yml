@@ -20,7 +20,6 @@ jobs:
           PP_IOS: ${{ secrets.PROVISIONING_PROFILE_IOS }}
           PP_WATCH: ${{ secrets.PROVISIONING_PROFILE_WATCH }}
         run: |
-          # Import cert
           echo "$CERT_BASE64" | base64 --decode > /tmp/dist.p12
           security create-keychain -p actions temp.keychain
           security list-keychains -d user -s temp.keychain $(security list-keychains -d user | sed s/\"//g)
@@ -30,28 +29,46 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k actions temp.keychain
           security find-identity -v -p codesigning temp.keychain
 
-          # Install provisioning profiles
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "$PP_IOS" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/guide_ios.mobileprovision
-          echo "$PP_WATCH" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/guide_watch.mobileprovision
+          echo "$PP_IOS" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/29d631d6-d540-454f-9df7-9b9116273b7c.mobileprovision
+          echo "$PP_WATCH" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/e8d734dc-f026-46b5-9e82-277f093ee31c.mobileprovision
 
       - name: Archive
         run: |
-          xcodebuild archive             -project "Guide individual.xcodeproj"             -scheme "Guide individual"             -configuration Release             -archivePath /tmp/guide.xcarchive             CODE_SIGN_STYLE=Automatic             DEVELOPMENT_TEAM=HZB9DA7TPR             2>&1 | tail -20
+          xcodebuild archive \
+            -project "Guide individual.xcodeproj" \
+            -scheme "Guide individual" \
+            -configuration Release \
+            -archivePath /tmp/guide.xcarchive \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution: Joost Laarakker (HZB9DA7TPR)" \
+            DEVELOPMENT_TEAM=HZB9DA7TPR \
+            PROVISIONING_PROFILE_SPECIFIER="iOS Team Store Provisioning Profile: com.joostlaarakker.guide" \
+            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain" \
+            2>&1 | grep -E "error:|warning:|ARCHIVE|FAILED|Signing"
 
       - name: Export IPA
         run: |
-          cat > /tmp/ExportOptions.plist << 'EOF'
-          <?xml version=1.0 encoding=UTF-8?>
-          <!DOCTYPE plist PUBLIC -//Apple//DTD PLIST 1.0//EN http://www.apple.com/DTDs/PropertyList-1.0.dtd>
-          <plist version=1.0>
+          cat > /tmp/ExportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
           <dict>
               <key>method</key>
               <string>app-store</string>
               <key>teamID</key>
               <string>HZB9DA7TPR</string>
               <key>signingStyle</key>
-              <string>automatic</string>
+              <string>manual</string>
+              <key>signingCertificate</key>
+              <string>Apple Distribution</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>com.joostlaarakker.guide</key>
+                  <string>iOS Team Store Provisioning Profile: com.joostlaarakker.guide</string>
+                  <key>com.joostlaarakker.guide.watchkitapp</key>
+                  <string>iOS Team Store Provisioning Profile: com.joostlaarakker.guide.watchkitapp</string>
+              </dict>
               <key>stripSwiftSymbols</key>
               <true/>
               <key>uploadSymbols</key>
@@ -59,7 +76,11 @@ jobs:
           </dict>
           </plist>
           EOF
-          xcodebuild -exportArchive             -archivePath /tmp/guide.xcarchive             -exportPath /tmp/guide_export             -exportOptionsPlist /tmp/ExportOptions.plist             2>&1 | tail -20
+          xcodebuild -exportArchive \
+            -archivePath /tmp/guide.xcarchive \
+            -exportPath /tmp/guide_export \
+            -exportOptionsPlist /tmp/ExportOptions.plist \
+            2>&1 | tail -10
 
       - name: Upload to App Store Connect
         env:
@@ -68,5 +89,10 @@ jobs:
           APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
-          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ~/.appstoreconnect/private_keys/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8
-          xcrun altool --upload-app             -f "/tmp/guide_export/Guide individual.ipa"             -t ios             --apiKey "$APP_STORE_CONNECT_KEY_ID"             --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"             2>&1
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+          xcrun altool --upload-app \
+            -f "/tmp/guide_export/Guide individual.ipa" \
+            -t ios \
+            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
+            2>&1
