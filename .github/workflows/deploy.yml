@@ -1,0 +1,76 @@
+name: Deploy to App Store
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+
+      - name: Import Distribution Certificate
+        env:
+          CERT_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_BASE64 }}
+          CERT_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSWORD }}
+        run: |
+          echo "$CERT_BASE64" | base64 --decode > /tmp/dist.p12
+          security create-keychain -p actions temp.keychain
+          security default-keychain -s temp.keychain
+          security unlock-keychain -p actions temp.keychain
+          security import /tmp/dist.p12 -k temp.keychain -P "$CERT_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k actions temp.keychain
+
+      - name: Archive
+        run: |
+          xcodebuild archive \
+            -project "Guide individual.xcodeproj" \
+            -scheme "Guide individual" \
+            -configuration Release \
+            -archivePath /tmp/guide.xcarchive \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            DEVELOPMENT_TEAM=HZB9DA7TPR
+
+      - name: Export IPA
+        run: |
+          cat > /tmp/ExportOptions.plist << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>HZB9DA7TPR</string>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>uploadSymbols</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+          xcodebuild -exportArchive \
+            -archivePath /tmp/guide.xcarchive \
+            -exportPath /tmp/guide_export \
+            -exportOptionsPlist /tmp/ExportOptions.plist
+
+      - name: Upload to App Store Connect
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+        run: |
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/AuthKey.p8
+          xcrun altool --upload-app \
+            -f "/tmp/guide_export/Guide individual.ipa" \
+            -t ios \
+            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
+            --apiKey-path /tmp/AuthKey.p8
