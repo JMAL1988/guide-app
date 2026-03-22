@@ -1,0 +1,5 @@
+git_url(ENV["MATCH_GIT_URL"] || "https://github.com/JMAL1988/guide-match-certs.git")
+storage_mode("git")
+type("appstore")
+app_identifier(["com.joostlaarakker.guide", "com.joostlaarakker.guide.watchkitapp"])
+team_id("HZB9DA7TPR")
