@@ -27,7 +27,7 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k actions temp.keychain
           security find-identity -v -p codesigning temp.keychain
 
-      - name: Archive
+      - name: Archive and Export
         run: |
           xcodebuild archive \
             -project "Guide individual.xcodeproj" \
@@ -37,11 +37,8 @@ jobs:
             CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="Apple Distribution" \
             DEVELOPMENT_TEAM=HZB9DA7TPR \
-            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain" \
-            2>&1 | tail -20
+            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain"
 
-      - name: Export IPA
-        run: |
           cat > /tmp/ExportOptions.plist << 'EOF'
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -60,10 +57,13 @@ jobs:
           </dict>
           </plist>
           EOF
+
+          security unlock-keychain -p actions temp.keychain
           xcodebuild -exportArchive \
             -archivePath /tmp/guide.xcarchive \
             -exportPath /tmp/guide_export \
-            -exportOptionsPlist /tmp/ExportOptions.plist
+            -exportOptionsPlist /tmp/ExportOptions.plist \
+            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain"
 
       - name: Upload to App Store Connect
         env:
