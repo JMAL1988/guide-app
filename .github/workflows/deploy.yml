@@ -47,6 +47,7 @@ jobs:
             -scheme "Guide individual" \
             -configuration Release \
             -archivePath "$RUNNER_TEMP/guide.xcarchive" \
+            -destination "generic/platform=iOS" \
             -allowProvisioningUpdates \
             -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
             -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
@@ -76,6 +77,7 @@ jobs:
 
           xcodebuild -exportArchive \
             -archivePath "$RUNNER_TEMP/guide.xcarchive" \
+            -destination "generic/platform=iOS" \
             -exportPath "$RUNNER_TEMP/guide_export" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
             -allowProvisioningUpdates \
