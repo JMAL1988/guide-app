@@ -13,19 +13,84 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Install Fastlane
-        run: brew install fastlane
-
-      - name: Deploy via Fastlane
+      - name: Import Certificate and Profiles
         env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          MATCH_GITHUB_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
-          MATCH_GIT_URL: https://JMAL1988:${{ secrets.MATCH_GITHUB_TOKEN }}@github.com/JMAL1988/guide-match-certs.git
+          CERT_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_BASE64 }}
+          CERT_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          PP_IOS: ${{ secrets.PROVISIONING_PROFILE_IOS }}
+          PP_WATCH: ${{ secrets.PROVISIONING_PROFILE_WATCH }}
+        run: |
+          echo "$CERT_BASE64" | base64 --decode > /tmp/dist.p12
+          security create-keychain -p actions temp.keychain
+          security list-keychains -d user -s temp.keychain $(security list-keychains -d user | sed s/\"//g)
+          security default-keychain -s temp.keychain
+          security unlock-keychain -p actions temp.keychain
+          security import /tmp/dist.p12 -k temp.keychain -P "$CERT_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k actions temp.keychain
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$PP_IOS" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/guide_ios_store.mobileprovision
+          echo "$PP_WATCH" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/guide_watch_store.mobileprovision
+
+      - name: Build and Export IPA
+        run: |
+          set -e
+          xcodebuild archive \
+            -project "Guide individual.xcodeproj" \
+            -scheme "Guide individual" \
+            -configuration Release \
+            -archivePath "$RUNNER_TEMP/guide.xcarchive" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution: Joost Laarakker (HZB9DA7TPR)" \
+            DEVELOPMENT_TEAM=HZB9DA7TPR \
+            PROVISIONING_PROFILE_SPECIFIER="iOS Team Store Provisioning Profile: com.joostlaarakker.guide" \
+            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain"
+
+          cat > "$RUNNER_TEMP/ExportOptions.plist" << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>HZB9DA7TPR</string>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>signingCertificate</key>
+              <string>Apple Distribution</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>com.joostlaarakker.guide</key>
+                  <string>iOS Team Store Provisioning Profile: com.joostlaarakker.guide</string>
+                  <key>com.joostlaarakker.guide.watchkitapp</key>
+                  <string>iOS Team Store Provisioning Profile: com.joostlaarakker.guide.watchkitapp</string>
+              </dict>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>uploadSymbols</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/guide.xcarchive" \
+            -exportPath "$RUNNER_TEMP/guide_export" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist"
+
+          ls "$RUNNER_TEMP/guide_export/"
+
+      - name: Upload to App Store Connect
+        env:
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
-          FASTLANE_SKIP_UPDATE_CHECK: "1"
-          FASTLANE_DISABLE_COLORS: "1"
         run: |
-          cd $GITHUB_WORKSPACE
-          fastlane appstore
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+          xcrun altool --upload-app \
+            -f "$RUNNER_TEMP/guide_export/Guide individual.ipa" \
+            -t ios \
+            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
+            2>&1
