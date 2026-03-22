@@ -17,12 +17,44 @@ platform :ios do
     match(
       type: "appstore",
       readonly: true,
-      app_identifier: ["com.joostlaarakker.guide", "com.joostlaarakker.guide.watchkitapp"],
+      app_identifier: [
+        "com.joostlaarakker.guide",
+        "com.joostlaarakker.guide.watchkitapp",
+        "com.joostlaarakker.guide.watchcontainer"
+      ],
       api_key: api_key,
       git_basic_authorization: Base64.strict_encode64("JMAL1988:#{ENV["MATCH_GITHUB_TOKEN"]}")
     )
 
-    # Build the archive
+    # Update code signing settings for manual signing in all targets
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      team_id: "HZB9DA7TPR",
+      code_sign_identity: "Apple Distribution",
+      targets: ["Guide individual"],
+      profile_name: "match AppStore com.joostlaarakker.guide",
+      build_configurations: ["Release"]
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      team_id: "HZB9DA7TPR",
+      code_sign_identity: "Apple Distribution",
+      targets: ["Guide Individual Watch Watch App"],
+      profile_name: "match AppStore com.joostlaarakker.guide.watchkitapp",
+      build_configurations: ["Release"]
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      team_id: "HZB9DA7TPR",
+      code_sign_identity: "Apple Distribution",
+      targets: ["Guide Individual Watch"],
+      profile_name: "match AppStore com.joostlaarakker.guide.watchcontainer",
+      build_configurations: ["Release"]
+    )
+
+    # Build and archive
     gym(
       project: "Guide individual.xcodeproj",
       scheme: "Guide individual",
@@ -30,11 +62,14 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         teamID: "HZB9DA7TPR",
+        method: "app-store",
         signingStyle: "manual",
-        signingCertificate: "Apple Distribution",
+        stripSwiftSymbols: true,
+        uploadSymbols: true,
         provisioningProfiles: {
           "com.joostlaarakker.guide" => "match AppStore com.joostlaarakker.guide",
-          "com.joostlaarakker.guide.watchkitapp" => "match AppStore com.joostlaarakker.guide.watchkitapp"
+          "com.joostlaarakker.guide.watchkitapp" => "match AppStore com.joostlaarakker.guide.watchkitapp",
+          "com.joostlaarakker.guide.watchcontainer" => "match AppStore com.joostlaarakker.guide.watchcontainer"
         }
       },
       output_directory: "/tmp/guide_build",
