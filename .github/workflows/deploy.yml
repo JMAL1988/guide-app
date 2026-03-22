@@ -13,11 +13,14 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Import Distribution Certificate
+      - name: Import Certificate and Profiles
         env:
           CERT_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_BASE64 }}
           CERT_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSWORD }}
+          PP_IOS: ${{ secrets.PROVISIONING_PROFILE_IOS }}
+          PP_WATCH: ${{ secrets.PROVISIONING_PROFILE_WATCH }}
         run: |
+          # Import cert
           echo "$CERT_BASE64" | base64 --decode > /tmp/dist.p12
           security create-keychain -p actions temp.keychain
           security list-keychains -d user -s temp.keychain $(security list-keychains -d user | sed s/\"//g)
@@ -27,29 +30,28 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k actions temp.keychain
           security find-identity -v -p codesigning temp.keychain
 
-      - name: Archive and Export
-        run: |
-          xcodebuild archive \
-            -project "Guide individual.xcodeproj" \
-            -scheme "Guide individual" \
-            -configuration Release \
-            -archivePath /tmp/guide.xcarchive \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            DEVELOPMENT_TEAM=HZB9DA7TPR \
-            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain"
+          # Install provisioning profiles
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "$PP_IOS" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/guide_ios.mobileprovision
+          echo "$PP_WATCH" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/guide_watch.mobileprovision
 
+      - name: Archive
+        run: |
+          xcodebuild archive             -project "Guide individual.xcodeproj"             -scheme "Guide individual"             -configuration Release             -archivePath /tmp/guide.xcarchive             CODE_SIGN_STYLE=Automatic             DEVELOPMENT_TEAM=HZB9DA7TPR             2>&1 | tail -20
+
+      - name: Export IPA
+        run: |
           cat > /tmp/ExportOptions.plist << 'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
+          <?xml version=1.0 encoding=UTF-8?>
+          <!DOCTYPE plist PUBLIC -//Apple//DTD PLIST 1.0//EN http://www.apple.com/DTDs/PropertyList-1.0.dtd>
+          <plist version=1.0>
           <dict>
               <key>method</key>
               <string>app-store</string>
               <key>teamID</key>
               <string>HZB9DA7TPR</string>
               <key>signingStyle</key>
-              <string>manual</string>
+              <string>automatic</string>
               <key>stripSwiftSymbols</key>
               <true/>
               <key>uploadSymbols</key>
@@ -57,13 +59,7 @@ jobs:
           </dict>
           </plist>
           EOF
-
-          security unlock-keychain -p actions temp.keychain
-          xcodebuild -exportArchive \
-            -archivePath /tmp/guide.xcarchive \
-            -exportPath /tmp/guide_export \
-            -exportOptionsPlist /tmp/ExportOptions.plist \
-            OTHER_CODE_SIGN_FLAGS="--keychain temp.keychain"
+          xcodebuild -exportArchive             -archivePath /tmp/guide.xcarchive             -exportPath /tmp/guide_export             -exportOptionsPlist /tmp/ExportOptions.plist             2>&1 | tail -20
 
       - name: Upload to App Store Connect
         env:
@@ -73,8 +69,4 @@ jobs:
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
           echo "$APP_STORE_CONNECT_PRIVATE_KEY" > ~/.appstoreconnect/private_keys/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8
-          xcrun altool --upload-app \
-            -f "/tmp/guide_export/Guide individual.ipa" \
-            -t ios \
-            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
-            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"
+          xcrun altool --upload-app             -f "/tmp/guide_export/Guide individual.ipa"             -t ios             --apiKey "$APP_STORE_CONNECT_KEY_ID"             --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"             2>&1
