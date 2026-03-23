@@ -1,3 +1,4 @@
+import UserNotifications
 import SwiftUI
 import WatchConnectivity
 import Combine
@@ -82,6 +83,9 @@ class RoutineStore: NSObject, ObservableObject, WCSessionDelegate {
         super.init()
         load()
 
+        // Request notification permissions for wake-up alerts
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .criticalAlert]) { _, _ in }
+
         if WCSession.isSupported() {
             WCSession.default.delegate = self
             WCSession.default.activate()
@@ -132,7 +136,33 @@ class RoutineStore: NSObject, ObservableObject, WCSessionDelegate {
             UserDefaults.standard.set(encoded, forKey: saveKey)
             sharedDefaults?.set(encoded, forKey: saveKey)
             syncToWatch()
+            scheduleWakeUpNotification()
         }
+    }
+
+    /// Schedule a wake-up notification 10 minutes before the first routine of the day
+    private func scheduleWakeUpNotification() {
+        // Remove any existing wake-up notifications
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["guide-wakeup"])
+
+        guard let first = routines.filter({ $0.enabled })
+            .min(by: { ($0.scheduledHour * 60 + $0.scheduledMinute) < ($1.scheduledHour * 60 + $1.scheduledMinute) }) else { return }
+
+        let totalMinutes = first.scheduledHour * 60 + first.scheduledMinute - 10
+        guard totalMinutes >= 0 else { return }
+
+        let content = UNMutableNotificationContent()
+        content.title = "Wake Up"
+        content.body = "\(first.name) starts in 10 minutes"
+        content.sound = UNNotificationSound.defaultCritical
+
+        var components = DateComponents()
+        components.hour   = totalMinutes / 60
+        components.minute = totalMinutes % 60
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        UNUserNotificationCenter.current().add(
+            UNNotificationRequest(identifier: "guide-wakeup", content: content, trigger: trigger)
+        )
     }
 
     func load() {
