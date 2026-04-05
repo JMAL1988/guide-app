@@ -1,57 +1,72 @@
 # Guide
 
-Personal routine timer for iPhone + Apple Watch.
+> A guide to a screenless life.
 
-## What it does
+Haptic-first routine app for iPhone + Apple Watch. Built on the one framework.
 
-Guide helps you structure your day with timed routines. Define routines on your iPhone, run them on your wrist.
+---
 
-- **iPhone**: Create and manage routines (morning, midday, evening, night)
-- **Apple Watch**: View upcoming routines, run step-by-step timers with haptic feedback
-- **Sync**: Automatic sync via WatchConnectivity (live messages + background context)
+## Product lines
 
-## Architecture
+### Guide Individual (active)
+ADHD self-management for adults and teens. You build your own routines; the Watch guides you through them with haptic feedback.
+- Source: `ios-individual/`
+- Status: complete single-file Swift prototype, ready to build
 
-| Directory | Platform | Description |
-|-----------|----------|-------------|
-| `Guide individual/` | iPhone | SwiftUI app - models, store, views |
-| `Guide Individual Watch Watch App/` | watchOS | SwiftUI app - models, store, views |
+### Guide Family (parked)
+Parent-managed schedules for children with ADHD. Multi-child support, shared transitions, guided rituals.
+- Source: `ios/`
+- Status: full Xcode project exists, not current focus
 
-**Sync strategy** (iPhone to Watch):
-1. `updateApplicationContext` - system-cached, delivered even when watch app is closed
-2. `transferUserInfo` - queued background delivery
-3. `sendMessage` - immediate push when both apps are active
+---
 
-## Requirements
+## Repo structure
 
-- iOS 18.0+
-- watchOS 11.0+
-- Xcode 26.2+
-- Apple Developer account (for device deployment)
+```
+ios/                 — Guide Family: Xcode project (iPhone + Apple Watch)
+ios-individual/      — Guide Individual: single-file Swift + docs
+web/                 — PWA web prototype
+website/             — Marketing pages (b2b, b2c, device mockups)
+pitch/               — Pitch documents (V1 Connection, V2 Business)
+design/              — Logo concepts, mark explorations, design system
+design/branding/     — one framework brand assets
+docs/                — Launch spec, product decisions
+```
 
-## Setup
+---
 
-1. Clone the repo
-2. Open `Guide individual.xcodeproj` in Xcode
-3. Select your team in Signing & Capabilities
-4. Build and run:
-   - **iPhone**: scheme `Guide individual`, target your iPhone
-   - **Watch**: scheme `Guide Individual Watch Watch App`, target your Apple Watch
+## Build (Guide Individual)
 
-> **Note**: Deploy the watch app directly to the watch via Xcode. The Watch app installer has a known storage bug that blocks installation through the iPhone Watch app.
+1. Open Xcode 15+
+2. File → New → Project → Multiplatform App
+3. Replace ContentView with `ios-individual/Guide-Individual.swift`
+4. Set iOS 17.0+ and watchOS 10.0+ deployment targets
+5. Build → Run
 
-## Bundle IDs
+See `ios-individual/QUICKSTART.md` for full instructions.
 
-| Target | Bundle ID |
-|--------|-----------|
-| iPhone | `com.joostlaarakker.guide` |
-| Watch  | `com.joostlaarakker.guide.watchkitapp` |
-| App Group | `group.com.joostlaarakker.guide` |
+---
 
-## Known Issues
+## Design
 
-See [CHANGELOG.md](CHANGELOG.md) for fixes and [TODO.md](TODO.md) for planned work.
+Logo direction: the open G mark (1b). See `design/concepts/guide-1b-refined.html`.
+Design system: one framework — `design/one-design-system.md`.
 
-## License
+---
 
-Private - all rights reserved.
+## Philosophy
+
+- Screen-free use is the goal — the Watch is the real interface
+- Haptic first: time made tangible, not visible
+- Built on one: open infrastructure, no data extraction
+- ADHD-friendly: structure without punishment
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions and changelog format.
+
+---
+
+*Part of the one framework. Built by Sep + Joost + Lana.*

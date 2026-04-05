@@ -2,25 +2,32 @@
 
 All notable changes to Guide are documented here.
 
-Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
-Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
+Format per entry:
+```
+## [version] — YYYY-MM-DD
+### Added / Changed / Fixed / Removed
+- Description [Contributor]
+```
 
-## [0.1.0] - 2026-03-12
+Contributors: **Sep** (jessesep) · **Joost** (JMAL1988) · **Lana** (AI, one)
+
+---
+
+## [0.1.0] — 2026-03-11
 
 ### Added
-- iPhone app with routine management (create, edit, delete, reorder)
-- Four time-of-day categories: Morning, Midday, Evening, Night
-- Per-task duration and warning time configuration
-- Apple Watch companion app with routine list
-- Watch: "Now" card showing active or next upcoming routine
-- Watch: step-by-step routine runner with countdown timer
-- Watch: haptic feedback at start, warning, and completion
-- WatchConnectivity sync (applicationContext + transferUserInfo + sendMessage)
-- Watch requests routines from iPhone on first launch
-- Local persistence via UserDefaults
-- Debug status bar on iPhone showing WC session state
+- Full iOS + watchOS Xcode project — Guide family app (iPhone + Apple Watch) [Sep, Lana]
+- Guide Individual — single-file Swift app for ADHD self-management [Sep, Lana]
+- PWA web prototype — guide-app.html, v2/ iteration [Sep, Lana]
+- Marketing website files — b2b, b2c, device mockups [Sep, Lana]
+- Pitch documents — V1 Connection, V2 Business [Sep]
+- Design system — one framework color, type, spacing spec [Sep, Lana]
+- Logo concepts — A through F, 1b open G mark (selected direction) [Sep, Joost, Lana]
+- Branding assets — one-logo in transparent, black-bg, white-bg [Lana]
+- Launch spec — Guide x one commercial framework [Sep, Lana]
+- Root README, CONTRIBUTING, LICENSE, CHANGELOG [Lana]
 
-### Fixed
-- Watch app not recognized as companion (missing Embed Watch Content build phase in iPhone target)
-- Watch scheme not included in iPhone build action
-- Timer freeze on watch when tapping Next button (thread safety - dispatched to main queue)
+### Notes
+- v0.1.0 marks end of design/exploration phase
+- Active direction: Guide Individual (ADHD self-management, iOS + Watch)
+- Family app (ios/) exists but is not the current build focus

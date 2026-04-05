@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide — Type & Logo Mockups</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display&family=Syne:wght@400;600;700;800&family=Outfit:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #0a0a0a;
+      --s1:      #111111;
+      --s2:      #1a1a1a;
+      --border:  #262626;
+      --text:    #f0ede8;
+      --dim:     #555555;
+      --brand:   #8b7f72;
+      --brand-l: #a39589;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      padding: 64px 56px;
+      max-width: 1100px;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      margin-bottom: 72px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+    }
+    .page-header h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 11px;
+      color: var(--dim);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 80px; }
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Grid ── */
+    .grid { display: flex; flex-wrap: wrap; gap: 2px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--s1);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      min-height: 200px;
+    }
+    .card.light {
+      background: #f5f2ee;
+      color: #1a1a1a;
+    }
+    .card.cream {
+      background: #ede8e0;
+      color: #1a1a1a;
+    }
+    .card.white {
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+    .card.tall { min-height: 280px; }
+    .card.short { min-height: 160px; }
+
+    .card-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      align-self: flex-start;
+      margin-top: auto;
+    }
+    .card.light .card-label,
+    .card.cream .card-label,
+    .card.white .card-label { color: #aaa; }
+
+    /* ── THE MARK (1b open G) ── */
+    .mark svg path, .mark svg line { stroke: currentColor; }
+
+    /* ── Typography experiments ── */
+
+    /* 01 — IBM Plex Sans 300 — system default */
+    .type-01 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 300; font-size: 36px; letter-spacing: -0.5px; }
+    .type-01-sm { font-family: 'IBM Plex Sans', sans-serif; font-weight: 300; font-size: 22px; letter-spacing: 0px; }
+
+    /* 02 — IBM Plex Sans 200 — ultra light */
+    .type-02 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 200; font-size: 40px; letter-spacing: 2px; text-transform: lowercase; }
+
+    /* 03 — IBM Plex Sans 500 — medium, tight */
+    .type-03 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 500; font-size: 28px; letter-spacing: 6px; text-transform: uppercase; }
+
+    /* 04 — IBM Plex Mono — monospace wordmark */
+    .type-04 { font-family: 'IBM Plex Mono', monospace; font-weight: 300; font-size: 28px; letter-spacing: 1px; }
+    .type-04-sm { font-family: 'IBM Plex Mono', monospace; font-weight: 300; font-size: 18px; letter-spacing: 0.5px; }
+
+    /* 05 — Space Grotesk — geometric modern */
+    .type-05 { font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: 36px; letter-spacing: -1px; }
+    .type-05-bold { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -2px; }
+
+    /* 06 — Playfair Display — editorial serif */
+    .type-06 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 38px; letter-spacing: -0.5px; }
+    .type-06-i { font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic; font-size: 38px; }
+
+    /* 07 — Syne — strong display */
+    .type-07 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -1.5px; text-transform: uppercase; }
+    .type-07-light { font-family: 'Syne', sans-serif; font-weight: 400; font-size: 36px; letter-spacing: 1px; }
+
+    /* 08 — Outfit — clean friendly */
+    .type-08 { font-family: 'Outfit', sans-serif; font-weight: 200; font-size: 38px; letter-spacing: 1px; }
+    .type-08-med { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 32px; letter-spacing: -0.5px; }
+
+    /* 09 — Cormorant Garamond — high-end editorial */
+    .type-09 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 46px; letter-spacing: 1px; }
+    .type-09-i { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 46px; letter-spacing: 2px; }
+
+    /* ── Lockup layouts ── */
+    .lockup-h { display: flex; align-items: center; gap: 16px; }
+    .lockup-v { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .lockup-v-left { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+    /* Descriptor text */
+    .descriptor {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--brand);
+    }
+    .light .descriptor, .cream .descriptor, .white .descriptor { color: #8b7f72; }
+
+    .descriptor-sm {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--dim);
+    }
+    .light .descriptor-sm, .cream .descriptor-sm, .white .descriptor-sm { color: #999; }
+
+    /* Divider rule in lockup */
+    .v-rule { width: 1px; height: 40px; background: var(--border); }
+    .light .v-rule, .cream .v-rule { background: #c8bfb5; }
+
+    /* ── Color chip ── */
+    .color-brand { color: var(--brand); }
+    .card.light .color-brand { color: #6b5f52; }
+    .card.cream .color-brand { color: #6b5f52; }
+    .card.white .color-brand { color: #6b5f52; }
+
+    hr.section-rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 80px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>guide — type &amp; logo explorations</h1>
+  <p>Mark 1b (open G) × 9 type directions × dark + light · 2026-03-11</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — MARK REFERENCE
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">01 — mark reference (1b open G)</div>
+  <div class="grid">
+
+    <!-- Dark, standard -->
+    <div class="card short" style="flex:1; min-width:160px;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <div class="card-label">dark / #f0ede8</div>
+    </div>
+
+    <!-- Brand color -->
+    <div class="card short" style="flex:1; min-width:160px;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#8b7f72" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#8b7f72" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <div class="card-label">brand taupe / #8b7f72</div>
+    </div>
+
+    <!-- Light bg -->
+    <div class="card short light" style="flex:1; min-width:160px;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <div class="card-label">light bg / #1a1a1a</div>
+    </div>
+
+    <!-- Brand on light -->
+    <div class="card short light" style="flex:1; min-width:160px;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#6b5f52" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#6b5f52" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <div class="card-label">brand on light / #6b5f52</div>
+    </div>
+
+    <!-- Large mark -->
+    <div class="card short" style="flex:1; min-width:160px;">
+      <svg width="96" height="96" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <div class="card-label">large (96px)</div>
+    </div>
+
+    <!-- Small mark -->
+    <div class="card short" style="flex:1; min-width:160px;">
+      <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="card-label">small (32px)</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — TYPE DIRECTIONS (wordmark only)
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">02 — type directions (wordmark solo)</div>
+  <div class="grid-3">
+
+    <div class="card">
+      <span class="type-01">guide</span>
+      <div class="card-label">IBM Plex Sans 300 · system default</div>
+    </div>
+
+    <div class="card">
+      <span class="type-02">guide</span>
+      <div class="card-label">IBM Plex Sans 200 · spaced lowercase</div>
+    </div>
+
+    <div class="card">
+      <span class="type-03">guide</span>
+      <div class="card-label">IBM Plex Sans 500 · wide-tracked caps</div>
+    </div>
+
+    <div class="card">
+      <span class="type-04">guide</span>
+      <div class="card-label">IBM Plex Mono 300 · monospace</div>
+    </div>
+
+    <div class="card">
+      <span class="type-05">guide</span>
+      <div class="card-label">Space Grotesk 300 · geometric</div>
+    </div>
+
+    <div class="card">
+      <span class="type-05-bold">guide</span>
+      <div class="card-label">Space Grotesk 700 · bold geometric</div>
+    </div>
+
+    <div class="card">
+      <span class="type-06">Guide</span>
+      <div class="card-label">Playfair Display 400 · editorial serif</div>
+    </div>
+
+    <div class="card">
+      <span class="type-06-i">Guide</span>
+      <div class="card-label">Playfair Display italic · elegant</div>
+    </div>
+
+    <div class="card">
+      <span class="type-07">guide</span>
+      <div class="card-label">Syne 800 · strong display</div>
+    </div>
+
+    <div class="card">
+      <span class="type-07-light">guide</span>
+      <div class="card-label">Syne 400 · open tracking</div>
+    </div>
+
+    <div class="card">
+      <span class="type-08">guide</span>
+      <div class="card-label">Outfit 200 · clean ultralight</div>
+    </div>
+
+    <div class="card">
+      <span class="type-09-i">Guide</span>
+      <div class="card-label">Cormorant Garamond italic · luxury</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — HORIZONTAL LOCKUPS (mark + wordmark)
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">03 — horizontal lockups (mark + wordmark)</div>
+  <div class="grid-2">
+
+    <!-- A: Plex Sans 300 -->
+    <div class="card">
+      <div class="lockup-h">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-01">guide</span>
+      </div>
+      <div class="card-label">mark + Plex Sans 300</div>
+    </div>
+
+    <!-- B: Plex Sans 200 spaced -->
+    <div class="card">
+      <div class="lockup-h">
+        <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-02" style="font-size:28px;">guide</span>
+      </div>
+      <div class="card-label">mark + Plex Sans 200 spaced</div>
+    </div>
+
+    <!-- C: Mono -->
+    <div class="card">
+      <div class="lockup-h">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-04">guide</span>
+      </div>
+      <div class="card-label">mark + Plex Mono 300</div>
+    </div>
+
+    <!-- D: Space Grotesk heavy -->
+    <div class="card">
+      <div class="lockup-h">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-05-bold" style="font-size:30px;">guide</span>
+      </div>
+      <div class="card-label">mark + Space Grotesk 700</div>
+    </div>
+
+    <!-- E: Playfair serif -->
+    <div class="card">
+      <div class="lockup-h" style="gap:20px;">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="type-06" style="font-size:32px;">Guide</span>
+      </div>
+      <div class="card-label">mark + Playfair Display</div>
+    </div>
+
+    <!-- F: Cormorant italic -->
+    <div class="card">
+      <div class="lockup-h" style="gap:20px;">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-09-i" style="font-size:36px;">Guide</span>
+      </div>
+      <div class="card-label">mark + Cormorant Garamond italic</div>
+    </div>
+
+    <!-- G: Syne heavy -->
+    <div class="card">
+      <div class="lockup-h" style="gap:14px;">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="6" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span class="type-07" style="font-size:30px;">GUIDE</span>
+      </div>
+      <div class="card-label">mark + Syne 800 caps</div>
+    </div>
+
+    <!-- H: Outfit ultralight -->
+    <div class="card">
+      <div class="lockup-h" style="gap:18px;">
+        <svg width="38" height="38" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span class="type-08" style="font-size:32px;">guide</span>
+      </div>
+      <div class="card-label">mark + Outfit 200</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — VERTICAL LOCKUPS (stacked)
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">04 — vertical lockups (stacked)</div>
+  <div class="grid-3">
+
+    <!-- V1: Plex Sans 300 + descriptor -->
+    <div class="card tall">
+      <div class="lockup-v">
+        <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="type-01">guide</span>
+        <span class="descriptor">a screenless life</span>
+      </div>
+      <div class="card-label">Plex Sans 300 + descriptor</div>
+    </div>
+
+    <!-- V2: Playfair italic + descriptor -->
+    <div class="card tall">
+      <div class="lockup-v">
+        <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-06-i" style="font-size:32px;">Guide</span>
+        <span class="descriptor">a screenless life</span>
+      </div>
+      <div class="card-label">Playfair italic + descriptor</div>
+    </div>
+
+    <!-- V3: Mono stacked -->
+    <div class="card tall">
+      <div class="lockup-v">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#8b7f72" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#8b7f72" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="type-04" style="color: #8b7f72;">guide</span>
+        <span class="descriptor" style="color: #555;">a screenless life</span>
+      </div>
+      <div class="card-label">brand taupe · Plex Mono</div>
+    </div>
+
+    <!-- V4: Mark large, word small — app icon feel -->
+    <div class="card tall">
+      <div class="lockup-v" style="gap:20px;">
+        <svg width="80" height="80" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-03" style="font-size:20px;">guide</span>
+      </div>
+      <div class="card-label">mark dominant · tracked caps</div>
+    </div>
+
+    <!-- V5: Cormorant + tagline -->
+    <div class="card tall">
+      <div class="lockup-v" style="gap:14px;">
+        <svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-09" style="font-size:38px;">Guide</span>
+        <span class="descriptor-sm" style="color: var(--dim);">structure you can feel</span>
+      </div>
+      <div class="card-label">Cormorant + tagline</div>
+    </div>
+
+    <!-- V6: Syne heavy stacked -->
+    <div class="card tall">
+      <div class="lockup-v" style="gap:16px;">
+        <svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-07" style="font-size:26px;">GUIDE</span>
+        <span class="descriptor">built on one</span>
+      </div>
+      <div class="card-label">Syne 800 + one attribution</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — LIGHT MODE LOCKUPS
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">05 — light mode lockups</div>
+  <div class="grid-3">
+
+    <div class="card cream">
+      <div class="lockup-v">
+        <svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="type-01" style="color:#1a1a1a; font-size:32px;">guide</span>
+        <span class="descriptor">a screenless life</span>
+      </div>
+      <div class="card-label">cream · Plex 300</div>
+    </div>
+
+    <div class="card white">
+      <div class="lockup-h" style="gap:16px;">
+        <svg width="42" height="42" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-06" style="color:#1a1a1a; font-size:30px;">Guide</span>
+      </div>
+      <div class="card-label">white · Playfair horizontal</div>
+    </div>
+
+    <div class="card light">
+      <div class="lockup-h" style="gap:14px;">
+        <svg width="38" height="38" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#6b5f52" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#6b5f52" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-09-i" style="color:#1a1a1a; font-size:34px;">Guide</span>
+      </div>
+      <div class="card-label">light · Cormorant italic + brand mark</div>
+    </div>
+
+    <div class="card cream">
+      <div class="lockup-v" style="gap:14px;">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#6b5f52" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#6b5f52" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="type-08" style="color:#1a1a1a; font-size:30px;">guide</span>
+      </div>
+      <div class="card-label">cream · Outfit 200 + brand mark</div>
+    </div>
+
+    <div class="card white">
+      <div class="lockup-v" style="gap:12px;">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-07" style="color:#1a1a1a; font-size:24px;">GUIDE</span>
+        <span class="descriptor">built on one</span>
+      </div>
+      <div class="card-label">white · Syne 800 + attribution</div>
+    </div>
+
+    <div class="card light">
+      <div class="lockup-h" style="gap:14px;">
+        <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <span class="type-04" style="color:#1a1a1a; font-size:26px;">guide</span>
+      </div>
+      <div class="card-label">light · Plex Mono horizontal</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — WITH VERTICAL RULE DIVIDER
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">06 — mark + rule + wordmark + descriptor</div>
+  <div class="grid-2">
+
+    <div class="card tall">
+      <div class="lockup-h" style="gap:0; align-items:center;">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none" style="margin-right:20px;">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="v-rule" style="margin-right:20px;"></div>
+        <div class="lockup-v-left" style="gap:4px;">
+          <span class="type-01" style="font-size:28px; line-height:1;">guide</span>
+          <span class="descriptor">a screenless life</span>
+        </div>
+      </div>
+      <div class="card-label">mark | rule | name + descriptor · Plex 300</div>
+    </div>
+
+    <div class="card tall">
+      <div class="lockup-h" style="gap:0; align-items:center;">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none" style="margin-right:18px;">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="v-rule" style="margin-right:18px;"></div>
+        <div class="lockup-v-left" style="gap:4px;">
+          <span class="type-06" style="font-size:26px; line-height:1;">Guide</span>
+          <span class="descriptor">structure you feel</span>
+        </div>
+      </div>
+      <div class="card-label">mark | rule | name + descriptor · Playfair</div>
+    </div>
+
+    <div class="card tall cream">
+      <div class="lockup-h" style="gap:0; align-items:center;">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none" style="margin-right:18px;">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#6b5f52" stroke-width="4" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#6b5f52" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="v-rule" style="background:#c8bfb5; margin-right:18px;"></div>
+        <div class="lockup-v-left" style="gap:4px;">
+          <span class="type-09-i" style="font-size:28px; line-height:1; color:#1a1a1a;">Guide</span>
+          <span class="descriptor">a screenless life</span>
+        </div>
+      </div>
+      <div class="card-label">cream · Cormorant italic</div>
+    </div>
+
+    <div class="card tall cream">
+      <div class="lockup-h" style="gap:0; align-items:center;">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none" style="margin-right:18px;">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <div class="v-rule" style="background:#c8bfb5; margin-right:18px;"></div>
+        <div class="lockup-v-left" style="gap:4px;">
+          <span class="type-05" style="font-size:26px; line-height:1; color:#1a1a1a;">guide</span>
+          <span class="descriptor">built on one</span>
+        </div>
+      </div>
+      <div class="card-label">cream · Space Grotesk 300</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 7 — APP ICON CROPS
+════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">07 — app icon (mark solo, various backgrounds)</div>
+  <div class="grid">
+
+    <div class="card short" style="width:140px; height:140px; flex:none; border-radius:28px; padding:0; justify-content:center;">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="card short" style="width:140px; height:140px; flex:none; border-radius:28px; padding:0; justify-content:center; background:#1a1a1a;">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="card short" style="width:140px; height:140px; flex:none; border-radius:28px; padding:0; justify-content:center; background:#2a2218;">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#a39589" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#a39589" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="card short" style="width:140px; height:140px; flex:none; border-radius:28px; padding:0; justify-content:center; background:#f5f2ee;">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="card short" style="width:140px; height:140px; flex:none; border-radius:28px; padding:0; justify-content:center; background:#ede8e0;">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#6b5f52" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#6b5f52" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="card short" style="width:140px; height:140px; flex:none; border-radius:28px; padding:0; justify-content:center; background:#fff;">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#8b7f72" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#8b7f72" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

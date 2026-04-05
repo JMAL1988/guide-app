@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f5f2ee; font-family: 'IBM Plex Sans', sans-serif; padding: 48px; width: 900px; }
+.label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+.desc { font-size: 11px; color: #888; margin-bottom: 40px; font-weight: 300; }
+.row { display: flex; gap: 32px; align-items: flex-start; }
+.phone {
+  width: 240px; height: 480px;
+  background: #f5f2ee;
+  border: 1.5px solid #c8bfb5;
+  border-radius: 36px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.phone-dark {
+  background: #0a0a0a;
+  border-color: #262626;
+}
+.phone-notch {
+  position: absolute; top: 12px;
+  width: 60px; height: 5px;
+  background: #c8bfb5; border-radius: 3px;
+}
+.phone-dark .phone-notch { background: #333; }
+.phone-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #a09890;
+  margin-top: 16px; text-align: center;
+}
+.by-one {
+  position: absolute; bottom: 28px;
+  display: flex; align-items: center; gap: 5px;
+}
+.by-one-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #888;
+}
+.rule { width: 28px; height: 1px; }
+</style></head><body>
+<div class="label">F — Splash screens</div>
+<div class="desc">How Guide appears at launch. Three directions.</div>
+<div class="row">
+
+  <!-- Splash 1: Step mark + Guide, light -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="display:flex;align-items:flex-end;gap:5px;margin-bottom:18px;">
+          <div style="width:7px;height:16px;border-radius:3.5px;background:#1a1a1a;"></div>
+          <div style="width:7px;height:24px;border-radius:3.5px;background:#1a1a1a;"></div>
+          <div style="width:7px;height:32px;border-radius:3.5px;background:#1a1a1a;"></div>
+        </div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:38px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</div>
+        <div class="rule" style="background:#c8bfb5;margin:16px auto;"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#888;text-align:center;">Structure for<br>your day</div>
+      </div>
+      <div class="by-one">
+        <img src="../../branding/one-logo-transparent.png" width="10" height="10" style="filter:brightness(0);opacity:0.35;display:block;">
+        <div class="by-one-text">by one</div>
+      </div>
+    </div>
+    <div class="phone-label">Step mark · light</div>
+  </div>
+
+  <!-- Splash 2: Step mark + Guide, dark -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+    <div class="phone phone-dark">
+      <div class="phone-notch"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="display:flex;align-items:flex-end;gap:5px;margin-bottom:18px;">
+          <div style="width:7px;height:16px;border-radius:3.5px;background:#f0ede8;"></div>
+          <div style="width:7px;height:24px;border-radius:3.5px;background:#f0ede8;"></div>
+          <div style="width:7px;height:32px;border-radius:3.5px;background:#f0ede8;"></div>
+        </div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:38px;font-weight:300;color:#f0ede8;letter-spacing:-0.5px;line-height:1;">Guide</div>
+        <div class="rule" style="background:#333;margin:16px auto;"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#555;text-align:center;">Structure for<br>your day</div>
+      </div>
+      <div class="by-one">
+        <img src="../../branding/one-logo-transparent.png" width="10" height="10" style="filter:brightness(0) invert(1);opacity:0.35;display:block;">
+        <div class="by-one-text" style="color:#444;">by one</div>
+      </div>
+    </div>
+    <div class="phone-label">Step mark · dark</div>
+  </div>
+
+  <!-- Splash 3: one mark primary, light -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+        <img src="../../branding/one-logo-transparent.png" width="44" height="44" style="filter:brightness(0);display:block;">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:38px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#888;">Personal rhythm system</div>
+      </div>
+    </div>
+    <div class="phone-label">one mark primary · light</div>
+  </div>
+
+</div>
+</body></html>

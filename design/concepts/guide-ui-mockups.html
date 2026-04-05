@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide — UI Mockups</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* one system */
+      --bg:      #0a0a0a;
+      --s1:      #111111;
+      --s2:      #1a1a1a;
+      --s3:      #262626;
+      --s4:      #333333;
+      --dim:     #555555;
+      --dim2:    #888888;
+      --text:    #f0ede8;
+      --brand:   #8b7f72;
+      --brand-l: #a39589;
+      --active:  #2a2218;
+      /* light */
+      --lg-bg:   #f5f2ee;
+      --lg-s1:   #ebe6df;
+      --lg-s2:   #e0d9d0;
+      --lg-border: #c8bfb5;
+      --lg-text: #1a1a1a;
+      --lg-brand: #6b5f52;
+      /* accent */
+      --green:   #4a7c5e;
+      --green-l: #6aac84;
+      --amber:   #b8864e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f0f0f;
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      padding: 64px 48px;
+    }
+
+    /* ── page header ── */
+    .page-header {
+      margin-bottom: 80px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--s3);
+    }
+    .page-header h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+    .page-header p { font-size: 11px; color: var(--dim); font-weight: 300; }
+
+    /* ── section ── */
+    .section { margin-bottom: 96px; }
+    .section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--s3);
+    }
+    .phones-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    /* ── iPhone frame ── */
+    .phone {
+      width: 320px;
+      flex-shrink: 0;
+    }
+    .phone-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 12px;
+    }
+    .phone-frame {
+      width: 320px;
+      border-radius: 44px;
+      border: 2px solid #2a2a2a;
+      background: var(--bg);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 0 1px #111, 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .phone-frame.light { background: var(--lg-bg); }
+
+    /* Status bar */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px 8px;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+    .phone-frame.light .status-bar { color: var(--lg-text); }
+    .status-time { font-weight: 500; font-size: 13px; }
+    .status-icons { display: flex; gap: 5px; align-items: center; font-size: 10px; }
+
+    /* Dynamic island */
+    .dynamic-island {
+      width: 90px;
+      height: 26px;
+      background: #000;
+      border-radius: 20px;
+      margin: 0 auto 0;
+      position: relative;
+      top: -2px;
+    }
+
+    /* Screen content */
+    .screen {
+      padding: 0;
+      min-height: 580px;
+    }
+
+    /* Home indicator */
+    .home-indicator {
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 8px;
+    }
+    .home-bar {
+      width: 100px;
+      height: 4px;
+      background: var(--s4);
+      border-radius: 2px;
+    }
+    .phone-frame.light .home-bar { background: #ccc; }
+
+    /* ────────────────────────────────────────
+       SCREEN COMPONENTS
+    ──────────────────────────────────────── */
+
+    /* Nav bar */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 24px 16px;
+    }
+    .nav-back {
+      font-size: 13px;
+      color: var(--brand);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-title {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+    .nav-action { font-size: 13px; color: var(--brand); }
+
+    /* Section pad */
+    .sp { padding: 0 24px; }
+
+    /* Screen title */
+    .screen-title {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .screen-subtitle {
+      font-size: 13px;
+      color: var(--dim2);
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    /* List item */
+    .list-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--s3);
+      gap: 12px;
+    }
+    .phone-frame.light .list-item { border-bottom-color: var(--lg-border); }
+    .list-item:last-child { border-bottom: none; }
+    .list-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--s2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .phone-frame.light .list-icon { background: var(--lg-s1); }
+    .list-text { flex: 1; }
+    .list-name { font-size: 14px; font-weight: 400; margin-bottom: 2px; }
+    .list-meta { font-size: 11px; color: var(--dim2); font-weight: 300; }
+    .list-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--brand);
+      letter-spacing: 0.5px;
+    }
+    .phone-frame.light .list-name { color: var(--lg-text); }
+    .phone-frame.light .list-meta { color: #888; }
+
+    /* Tag */
+    .tag {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 3px;
+      color: var(--brand);
+      background: var(--active);
+    }
+    .tag.green { color: var(--green-l); background: rgba(74,124,94,0.15); }
+    .phone-frame.light .tag { background: rgba(107,95,82,0.12); }
+
+    /* Progress bar */
+    .progress-wrap {
+      height: 3px;
+      background: var(--s3);
+      border-radius: 2px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .phone-frame.light .progress-wrap { background: var(--lg-border); }
+    .progress-fill {
+      height: 100%;
+      background: var(--brand);
+      border-radius: 2px;
+    }
+
+    /* Button */
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 12px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .btn-secondary {
+      width: 100%;
+      padding: 16px;
+      background: var(--s2);
+      color: var(--text);
+      border-radius: 12px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0.2px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .phone-frame.light .btn-primary { background: var(--lg-text); color: var(--lg-bg); }
+    .phone-frame.light .btn-secondary { background: var(--lg-s1); color: var(--lg-text); }
+
+    /* Step circle */
+    .step-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--s3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--dim2);
+    }
+    .step-circle.active { border-color: var(--brand); color: var(--brand); }
+    .step-circle.done { border-color: var(--green); background: rgba(74,124,94,0.1); color: var(--green-l); }
+
+    /* Pool bar */
+    .pool-item { margin-bottom: 16px; }
+    .pool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 5px;
+    }
+    .pool-name { font-size: 13px; font-weight: 400; }
+    .pool-amount { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--brand); }
+    .pool-bar-track {
+      height: 4px;
+      background: var(--s3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .phone-frame.light .pool-bar-track { background: var(--lg-border); }
+    .pool-bar-fill { height: 100%; border-radius: 2px; }
+    .pool-desc { font-size: 10px; color: var(--dim); font-weight: 300; margin-top: 4px; }
+
+    /* Pricing card */
+    .price-card {
+      border: 1px solid var(--s3);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--brand);
+      background: var(--active);
+    }
+    .phone-frame.light .price-card { border-color: var(--lg-border); }
+    .phone-frame.light .price-card.featured { border-color: var(--lg-brand); background: rgba(107,95,82,0.08); }
+    .price-title { font-size: 14px; font-weight: 400; margin-bottom: 2px; }
+    .price-amount {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--brand);
+      margin-bottom: 4px;
+    }
+    .price-desc { font-size: 11px; color: var(--dim2); font-weight: 300; line-height: 1.4; }
+    .price-badge {
+      position: absolute;
+      top: -8px;
+      right: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--brand);
+      color: var(--bg);
+    }
+
+    /* Timer ring (active routine) */
+    .timer-ring-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0 16px;
+    }
+    .timer-display {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .timer-label { font-size: 12px; color: var(--dim2); letter-spacing: 0.5px; }
+
+    /* Divider */
+    .divider { height: 1px; background: var(--s3); margin: 12px 0; }
+    .phone-frame.light .divider { background: var(--lg-border); }
+
+    /* Mono label */
+    .mono-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 10px;
+    }
+
+    /* Splash center */
+    .splash-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 580px;
+      gap: 16px;
+    }
+    .splash-wordmark { font-size: 32px; font-weight: 300; letter-spacing: -0.5px; margin-top: 8px; }
+    .splash-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--brand);
+    }
+    .powered-by {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .powered-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* Watch card */
+    .watch-card {
+      width: 200px;
+      flex-shrink: 0;
+    }
+    .watch-frame {
+      width: 200px;
+      border-radius: 44px;
+      border: 2px solid #2a2a2a;
+      background: #000;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px #111, 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .watch-screen {
+      padding: 20px 18px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+    }
+    .watch-status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #555;
+      margin-bottom: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .watch-title { font-size: 13px; font-weight: 400; margin-bottom: 4px; line-height: 1.2; }
+    .watch-step { font-size: 11px; color: var(--dim2); margin-bottom: 12px; }
+    .watch-timer {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: -1px;
+      color: var(--brand-l);
+      margin-bottom: 4px;
+    }
+    .watch-progress {
+      height: 2px;
+      background: #222;
+      border-radius: 1px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .watch-progress-fill {
+      height: 100%;
+      background: var(--brand);
+      border-radius: 1px;
+    }
+    .watch-btn {
+      background: var(--s2);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .watch-indicator {
+      width: 60px;
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+      margin: 10px auto 6px;
+    }
+
+    /* Settings row */
+    .settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--s3);
+    }
+    .phone-frame.light .settings-row { border-bottom-color: var(--lg-border); }
+    .settings-label { font-size: 14px; font-weight: 300; }
+    .settings-value { font-size: 13px; color: var(--dim2); font-weight: 300; }
+    .settings-chevron { color: var(--dim); font-size: 11px; }
+
+    /* Spacer */
+    .gap8 { height: 8px; }
+    .gap12 { height: 12px; }
+    .gap16 { height: 16px; }
+    .gap20 { height: 20px; }
+    .gap24 { height: 24px; }
+
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>guide — ui mockups</h1>
+  <p>IBM Plex Sans 300 · one design system · dark + light · 2026-03-11</p>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     01 — SPLASH + ONBOARDING FLOW
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">01 — splash + onboarding</div>
+  <div class="phones-row">
+
+    <!-- SPLASH -->
+    <div class="phone">
+      <div class="phone-label">splash screen</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="position:relative;">
+          <div class="splash-center">
+            <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+              <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+            <div class="splash-wordmark">guide</div>
+            <div class="splash-tag">a screenless life</div>
+          </div>
+          <div class="powered-by">
+            <svg width="14" height="14" viewBox="0 0 64 64" fill="none">
+              <path d="M50 16 A22 22 0 1 0 50 48" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+              <line x1="38" y1="32" x2="50" y2="32" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <span class="powered-text">built on one</span>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- ONBOARDING 1 — WELCOME -->
+    <div class="phone">
+      <div class="phone-label">onboarding 1 — welcome</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:20px 0 0;">
+          <!-- progress dots -->
+          <div style="display:flex;gap:6px;padding:0 24px;margin-bottom:28px;">
+            <div style="width:20px;height:3px;background:var(--brand);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+          </div>
+          <div class="sp">
+            <div class="mono-label">what guide does</div>
+            <div class="screen-title">Structure you can feel.</div>
+            <div class="screen-subtitle">Not more screens. Not more reminders. Guide uses your Watch to move you through your day with haptic cues — transitions you feel, not ones you chase.</div>
+            <div class="divider"></div>
+            <div class="gap12"></div>
+            <div class="list-item">
+              <div class="list-icon">◎</div>
+              <div class="list-text">
+                <div class="list-name">Build your routines</div>
+                <div class="list-meta">Morning, work, evening — you define the shape</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-icon">⌚</div>
+              <div class="list-text">
+                <div class="list-name">Feel every transition</div>
+                <div class="list-meta">Haptic cues on your wrist, not your phone screen</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-icon">◻</div>
+              <div class="list-text">
+                <div class="list-name">No notifications</div>
+                <div class="list-meta">Guide asks nothing of you. It just guides.</div>
+              </div>
+            </div>
+            <div class="gap24"></div>
+            <div class="btn-primary">Get started</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- ONBOARDING 3 — MEET ONE -->
+    <div class="phone">
+      <div class="phone-label">onboarding 3 — meet one</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:20px 0 0;">
+          <div style="display:flex;gap:6px;padding:0 24px;margin-bottom:28px;">
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:20px;height:3px;background:var(--brand);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+          </div>
+          <div class="sp">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+              <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+                <path d="M50 16 A22 22 0 1 0 50 48" stroke="#8b7f72" stroke-width="5" stroke-linecap="round"/>
+                <line x1="38" y1="32" x2="50" y2="32" stroke="#8b7f72" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <span style="font-size:11px;color:var(--brand);font-family:'IBM Plex Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;">one framework</span>
+            </div>
+            <div class="screen-title">Guide runs on one.</div>
+            <div class="screen-subtitle">one is open infrastructure for human-AI collaboration. Nobody owns it. Everyone can use it.</div>
+            <div class="divider"></div>
+            <div class="gap12"></div>
+            <div style="background:var(--s2);border-radius:10px;padding:16px;margin-bottom:12px;">
+              <div style="font-size:13px;font-weight:300;line-height:1.6;color:var(--dim2);">"No tracking. No selling your data. No landlords."</div>
+            </div>
+            <div style="background:var(--s2);border-radius:10px;padding:16px;margin-bottom:20px;">
+              <div style="font-size:13px;font-weight:300;line-height:1.6;color:var(--dim2);">When you subscribe, you're not paying a platform. You're funding the people and infrastructure behind it.</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:24px;">
+              <span style="font-size:12px;color:var(--brand);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;">one-framework.org</span>
+              <span style="font-size:10px;color:var(--dim);">→</span>
+            </div>
+            <div class="btn-primary">Continue</div>
+            <div style="text-align:center;font-size:12px;color:var(--dim);margin-top:10px;">skip for now</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     02 — PRICING + POOL ONBOARDING
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">02 — pricing + pool visibility (onboarding 4 + 5)</div>
+  <div class="phones-row">
+
+    <!-- ONBOARDING 4 — PRICING -->
+    <div class="phone">
+      <div class="phone-label">onboarding 4 — how you want in</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:20px 0 0;">
+          <div style="display:flex;gap:6px;padding:0 24px;margin-bottom:28px;">
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:20px;height:3px;background:var(--brand);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+          </div>
+          <div class="sp">
+            <div class="screen-title">Choose how you want in.</div>
+            <div class="screen-subtitle">No pressure. Start free. Stay if it works.</div>
+            <div class="gap12"></div>
+
+            <div class="price-card">
+              <div class="price-title">Free trial</div>
+              <div class="price-amount">2 months free</div>
+              <div class="price-desc">Full access. No card required. See if it fits your life first.</div>
+            </div>
+
+            <div class="price-card featured">
+              <div class="price-badge">recommended</div>
+              <div class="price-title">Own it</div>
+              <div class="price-amount">€14.99 one-time</div>
+              <div class="price-desc">Guide forever. All updates. No recurring charges. No surprises.</div>
+            </div>
+
+            <div class="price-card">
+              <div class="price-title">Sustain it</div>
+              <div class="price-amount">€3.99 / month</div>
+              <div class="price-desc">Full access + you fund the one pools. See exactly where your money goes.</div>
+            </div>
+
+            <div class="gap12"></div>
+            <div class="btn-primary">Start free trial</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- ONBOARDING 5 — POOL VISIBILITY -->
+    <div class="phone">
+      <div class="phone-label">onboarding 5 — where it goes</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:20px 0 0;">
+          <div style="display:flex;gap:6px;padding:0 24px;margin-bottom:28px;">
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:6px;height:3px;background:var(--s3);border-radius:2px;"></div>
+            <div style="width:20px;height:3px;background:var(--brand);border-radius:2px;"></div>
+          </div>
+          <div class="sp">
+            <div class="screen-title">This is where it goes.</div>
+            <div class="screen-subtitle">Subscribers fund real things. Always visible. Never hidden.</div>
+
+            <div class="gap8"></div>
+            <div style="background:var(--s2);border-radius:12px;padding:16px;">
+
+              <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+                <span style="font-size:11px;color:var(--dim);">412 subscribers · March 2026</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green-l);">live</span>
+              </div>
+
+              <div class="pool-item">
+                <div class="pool-header">
+                  <span class="pool-name">Infrastructure</span>
+                  <span class="pool-amount">€189 / mo</span>
+                </div>
+                <div class="pool-bar-track"><div class="pool-bar-fill" style="width:10%;background:var(--brand-l);"></div></div>
+                <div class="pool-desc">Servers, compute, uptime</div>
+              </div>
+
+              <div class="pool-item">
+                <div class="pool-header">
+                  <span class="pool-name">Broodfonds</span>
+                  <span class="pool-amount">€94 / mo</span>
+                </div>
+                <div class="pool-bar-track"><div class="pool-bar-fill" style="width:5%;background:var(--amber);"></div></div>
+                <div class="pool-desc">Income security for contributors</div>
+              </div>
+
+              <div class="pool-item">
+                <div class="pool-header">
+                  <span class="pool-name">Teaching</span>
+                  <span class="pool-amount">€94 / mo</span>
+                </div>
+                <div class="pool-bar-track"><div class="pool-bar-fill" style="width:5%;background:var(--green);"></div></div>
+                <div class="pool-desc">Open workshops, documentation</div>
+              </div>
+
+              <div class="pool-item">
+                <div class="pool-header">
+                  <span class="pool-name">Public Good</span>
+                  <span class="pool-amount">€94 / mo</span>
+                </div>
+                <div class="pool-bar-track"><div class="pool-bar-fill" style="width:5%;background:#6a7a8a;"></div></div>
+                <div class="pool-desc">Voted quarterly by one contributors</div>
+              </div>
+
+            </div>
+            <div class="gap16"></div>
+            <div class="btn-primary">Let's go</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- POOL FULL VIEW (in-app settings) -->
+    <div class="phone">
+      <div class="phone-label">pool dashboard — in settings</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;">
+          <div class="nav-bar">
+            <span class="nav-back">← Settings</span>
+            <span class="nav-title">Where it goes</span>
+            <span class="nav-action"></span>
+          </div>
+          <div class="sp">
+            <div style="background:var(--active);border-radius:10px;padding:12px 14px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:11px;color:var(--brand-l);">You're sustaining one.</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);">since Jan 2026</span>
+            </div>
+
+            <div class="mono-label">march 2026 · 412 subscribers</div>
+
+            <div class="pool-item">
+              <div class="pool-header">
+                <span class="pool-name">Infrastructure</span>
+                <span class="pool-amount">€189</span>
+              </div>
+              <div class="pool-bar-track"><div class="pool-bar-fill" style="width:45%;background:var(--brand-l);"></div></div>
+              <div class="pool-desc">10% · Servers, compute, uptime, security</div>
+            </div>
+
+            <div class="pool-item">
+              <div class="pool-header">
+                <span class="pool-name">Broodfonds</span>
+                <span class="pool-amount">€94</span>
+              </div>
+              <div class="pool-bar-track"><div class="pool-bar-fill" style="width:22%;background:var(--amber);"></div></div>
+              <div class="pool-desc">5% · Income security for contributors</div>
+            </div>
+
+            <div class="pool-item">
+              <div class="pool-header">
+                <span class="pool-name">Teaching</span>
+                <span class="pool-amount">€94</span>
+              </div>
+              <div class="pool-bar-track"><div class="pool-bar-fill" style="width:22%;background:var(--green);"></div></div>
+              <div class="pool-desc">5% · Workshops, docs, knowledge sharing</div>
+            </div>
+
+            <div class="pool-item">
+              <div class="pool-header">
+                <span class="pool-name">Public Good</span>
+                <span class="pool-amount">€94</span>
+              </div>
+              <div class="pool-bar-track"><div class="pool-bar-fill" style="width:22%;background:#6a7a8a;"></div></div>
+              <div class="pool-desc">5% · Q1 vote: open source tooling</div>
+            </div>
+
+            <div class="divider"></div>
+            <div style="font-size:11px;color:var(--dim);line-height:1.6;">Remainder funds Guide contributors directly. Updated monthly. Data from the one public ledger.</div>
+            <div class="gap8"></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim2);">Last updated: 1 Mar 2026</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     03 — HOME + ROUTINES
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">03 — home + routine views</div>
+  <div class="phones-row">
+
+    <!-- HOME — ROUTINES LIST -->
+    <div class="phone">
+      <div class="phone-label">home — routines</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">7:43</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;">
+          <div class="sp" style="padding-top:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <div class="screen-title" style="margin-bottom:0;">Good morning.</div>
+              <div style="font-size:12px;color:var(--dim);">Tue 11 Mar</div>
+            </div>
+            <div class="screen-subtitle">3 routines today.</div>
+
+            <div class="tag" style="margin-bottom:20px;">next up in 12 min</div>
+
+            <div class="mono-label">your routines</div>
+
+            <div class="list-item">
+              <div class="list-icon" style="background:var(--active);font-size:14px;">☀</div>
+              <div class="list-text">
+                <div class="list-name">Morning</div>
+                <div class="list-meta">5 tasks · 37 min · 08:00</div>
+              </div>
+              <div class="tag">now</div>
+            </div>
+
+            <div class="list-item" style="opacity:0.6;">
+              <div class="list-icon" style="font-size:14px;">◉</div>
+              <div class="list-text">
+                <div class="list-name">Work start</div>
+                <div class="list-meta">3 tasks · 33 min · 09:30</div>
+              </div>
+              <div class="list-badge">09:30</div>
+            </div>
+
+            <div class="list-item" style="opacity:0.6;">
+              <div class="list-icon" style="font-size:14px;">◌</div>
+              <div class="list-text">
+                <div class="list-name">Evening wind down</div>
+                <div class="list-meta">4 tasks · 30 min · 21:00</div>
+              </div>
+              <div class="list-badge">21:00</div>
+            </div>
+
+            <div class="divider"></div>
+            <div style="padding:12px 0;font-size:12px;color:var(--brand);display:flex;align-items:center;gap:6px;">
+              <span>+ Add routine</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- ROUTINE DETAIL -->
+    <div class="phone">
+      <div class="phone-label">routine detail — morning</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">7:43</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;">
+          <div class="nav-bar">
+            <span class="nav-back">← Home</span>
+            <span class="nav-title">Morning</span>
+            <span class="nav-action">Edit</span>
+          </div>
+          <div class="sp">
+            <div style="display:flex;gap:12px;margin-bottom:20px;align-items:center;">
+              <span style="font-size:12px;color:var(--dim2);">5 tasks</span>
+              <span style="color:var(--s3);">·</span>
+              <span style="font-size:12px;color:var(--dim2);">37 min total</span>
+              <span style="color:var(--s3);">·</span>
+              <span style="font-size:12px;color:var(--brand);">08:00</span>
+            </div>
+
+            <div class="list-item">
+              <div class="step-circle done" style="width:36px;height:36px;font-size:10px;">✓</div>
+              <div class="list-text">
+                <div class="list-name" style="text-decoration:line-through;color:var(--dim);">Wake + get up</div>
+                <div class="list-meta">2 min</div>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="step-circle active" style="width:36px;height:36px;font-size:10px;">2</div>
+              <div class="list-text">
+                <div class="list-name">Shower</div>
+                <div class="list-meta">10 min · warning at 8 min</div>
+              </div>
+              <div class="tag">active</div>
+            </div>
+
+            <div class="list-item" style="opacity:0.5;">
+              <div class="step-circle" style="width:36px;height:36px;font-size:10px;">3</div>
+              <div class="list-text">
+                <div class="list-name">Get dressed</div>
+                <div class="list-meta">5 min</div>
+              </div>
+            </div>
+
+            <div class="list-item" style="opacity:0.5;">
+              <div class="step-circle" style="width:36px;height:36px;font-size:10px;">4</div>
+              <div class="list-text">
+                <div class="list-name">Breakfast</div>
+                <div class="list-meta">15 min</div>
+              </div>
+            </div>
+
+            <div class="list-item" style="opacity:0.5;">
+              <div class="step-circle" style="width:36px;height:36px;font-size:10px;">5</div>
+              <div class="list-text">
+                <div class="list-name">Prep to leave</div>
+                <div class="list-meta">5 min</div>
+              </div>
+            </div>
+
+            <div class="gap20"></div>
+            <div class="btn-primary">Start from beginning</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- ACTIVE STEP VIEW -->
+    <div class="phone">
+      <div class="phone-label">active — step in progress</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">7:51</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;">
+          <div class="nav-bar">
+            <span class="nav-back">← Morning</span>
+            <span class="nav-title">Step 2 of 5</span>
+            <span class="nav-action"></span>
+          </div>
+          <div class="sp">
+            <div class="progress-wrap"><div class="progress-fill" style="width:28%;"></div></div>
+
+            <div class="mono-label">now</div>
+            <div class="screen-title" style="font-size:32px;margin-bottom:12px;">Shower</div>
+
+            <div class="timer-ring-wrap">
+              <div style="width:130px;height:130px;border-radius:50%;border:3px solid var(--s3);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:12px;">
+                <svg style="position:absolute;top:0;left:0;" width="130" height="130" viewBox="0 0 130 130">
+                  <circle cx="65" cy="65" r="62" fill="none" stroke="#262626" stroke-width="3"/>
+                  <circle cx="65" cy="65" r="62" fill="none" stroke="#8b7f72" stroke-width="3" stroke-dasharray="389.6" stroke-dashoffset="194.8" stroke-linecap="round" transform="rotate(-90 65 65)"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div class="timer-display">7:23</div>
+                  <div class="timer-label">remaining</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:var(--active);border-radius:10px;padding:12px 14px;margin-bottom:20px;">
+              <div style="font-size:11px;color:var(--brand);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:4px;">NEXT UP</div>
+              <div style="font-size:14px;">Get dressed · 5 min</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="btn-secondary" style="margin-bottom:0;font-size:14px;padding:14px;">Done early</div>
+              <div class="btn-secondary" style="margin-bottom:0;font-size:14px;padding:14px;">Need more time</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     04 — WATCH + LIGHT MODE
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">04 — watch companion + light mode</div>
+  <div class="phones-row">
+
+    <!-- WATCH — ROUTINE LIST -->
+    <div class="watch-card">
+      <div class="phone-label">watch — routine list</div>
+      <div class="watch-frame">
+        <div class="watch-screen">
+          <div class="watch-status">
+            <span>9:41</span>
+            <span>guide</span>
+          </div>
+          <div class="mono-label" style="font-size:8px;margin-bottom:8px;">today</div>
+          <div style="border-bottom:1px solid #222;padding-bottom:10px;margin-bottom:10px;">
+            <div class="watch-title">Morning</div>
+            <div class="watch-step">5 tasks · 37 min</div>
+            <div style="font-size:10px;color:var(--brand);">08:00 →</div>
+          </div>
+          <div style="opacity:0.5;">
+            <div class="watch-title">Work start</div>
+            <div class="watch-step">3 tasks · 09:30</div>
+          </div>
+          <div class="watch-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WATCH — ACTIVE STEP -->
+    <div class="watch-card">
+      <div class="phone-label">watch — active step</div>
+      <div class="watch-frame">
+        <div class="watch-screen">
+          <div class="watch-status">
+            <span>8:03</span>
+            <span>2 / 5</span>
+          </div>
+          <div class="watch-title">Shower</div>
+          <div class="watch-step">Morning routine</div>
+          <div class="watch-timer">7:23</div>
+          <div class="watch-progress"><div class="watch-progress-fill" style="width:50%;"></div></div>
+          <div class="watch-btn">Done ✓</div>
+          <div style="text-align:center;font-size:10px;color:#444;">skip</div>
+          <div class="watch-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHT MODE — HOME -->
+    <div class="phone">
+      <div class="phone-label">light mode — home</div>
+      <div class="phone-frame light">
+        <div class="status-bar" style="color:var(--lg-text);">
+          <span class="status-time">7:43</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;background:var(--lg-bg);">
+          <div class="sp" style="padding-top:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+              <div class="screen-title" style="color:var(--lg-text);margin-bottom:0;">Good morning.</div>
+              <div style="font-size:12px;color:#999;">Tue 11 Mar</div>
+            </div>
+            <div style="font-size:13px;color:#888;margin-bottom:16px;">3 routines today.</div>
+
+            <div class="tag" style="background:rgba(107,95,82,0.12);color:#6b5f52;margin-bottom:20px;">next up in 12 min</div>
+
+            <div class="mono-label" style="color:#aaa;">your routines</div>
+
+            <div class="list-item" style="border-bottom-color:var(--lg-border);">
+              <div class="list-icon" style="background:var(--lg-s1);">☀</div>
+              <div class="list-text">
+                <div class="list-name" style="color:var(--lg-text);">Morning</div>
+                <div class="list-meta" style="color:#888;">5 tasks · 37 min · 08:00</div>
+              </div>
+              <div class="tag" style="background:rgba(107,95,82,0.12);color:#6b5f52;">now</div>
+            </div>
+
+            <div class="list-item" style="opacity:0.6;border-bottom-color:var(--lg-border);">
+              <div class="list-icon" style="background:var(--lg-s1);">◉</div>
+              <div class="list-text">
+                <div class="list-name" style="color:var(--lg-text);">Work start</div>
+                <div class="list-meta" style="color:#888;">3 tasks · 33 min</div>
+              </div>
+              <div style="font-size:11px;color:#aaa;font-family:'IBM Plex Mono',monospace;">09:30</div>
+            </div>
+
+            <div class="list-item" style="opacity:0.6;border-bottom-color:var(--lg-border);">
+              <div class="list-icon" style="background:var(--lg-s1);">◌</div>
+              <div class="list-text">
+                <div class="list-name" style="color:var(--lg-text);">Evening wind down</div>
+                <div class="list-meta" style="color:#888;">4 tasks · 30 min</div>
+              </div>
+              <div style="font-size:11px;color:#aaa;font-family:'IBM Plex Mono',monospace;">21:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar" style="background:#ccc;"></div></div>
+      </div>
+    </div>
+
+    <!-- LIGHT MODE — ACTIVE STEP -->
+    <div class="phone">
+      <div class="phone-label">light mode — active step</div>
+      <div class="phone-frame light">
+        <div class="status-bar" style="color:var(--lg-text);">
+          <span class="status-time">7:51</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="background:var(--lg-bg);">
+          <div class="nav-bar">
+            <span class="nav-back" style="color:var(--lg-brand);">← Morning</span>
+            <span class="nav-title" style="color:var(--lg-text);">Step 2 of 5</span>
+            <span></span>
+          </div>
+          <div class="sp">
+            <div class="progress-wrap" style="background:var(--lg-border);">
+              <div class="progress-fill" style="width:28%;background:var(--lg-brand);"></div>
+            </div>
+            <div class="mono-label" style="color:#aaa;">now</div>
+            <div class="screen-title" style="color:var(--lg-text);font-size:32px;margin-bottom:12px;">Shower</div>
+
+            <div class="timer-ring-wrap">
+              <div style="width:130px;height:130px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:12px;">
+                <svg style="position:absolute;top:0;left:0;" width="130" height="130" viewBox="0 0 130 130">
+                  <circle cx="65" cy="65" r="62" fill="none" stroke="#c8bfb5" stroke-width="3"/>
+                  <circle cx="65" cy="65" r="62" fill="none" stroke="#6b5f52" stroke-width="3" stroke-dasharray="389.6" stroke-dashoffset="194.8" stroke-linecap="round" transform="rotate(-90 65 65)"/>
+                </svg>
+                <div style="text-align:center;">
+                  <div class="timer-display" style="color:var(--lg-text);">7:23</div>
+                  <div class="timer-label">remaining</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:var(--lg-s1);border-radius:10px;padding:12px 14px;margin-bottom:20px;">
+              <div style="font-size:11px;color:var(--lg-brand);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;margin-bottom:4px;">NEXT UP</div>
+              <div style="font-size:14px;color:var(--lg-text);">Get dressed · 5 min</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="padding:14px;background:var(--lg-s1);border-radius:12px;text-align:center;font-size:14px;color:var(--lg-text);">Done early</div>
+              <div style="padding:14px;background:var(--lg-s1);border-radius:12px;text-align:center;font-size:14px;color:var(--lg-text);">Need more time</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar" style="background:#ccc;"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     05 — SETTINGS + COMPLETION
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">05 — settings + completion</div>
+  <div class="phones-row">
+
+    <!-- SETTINGS -->
+    <div class="phone">
+      <div class="phone-label">settings</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;">
+          <div class="sp" style="padding-top:20px;">
+            <div class="screen-title" style="margin-bottom:20px;">Settings</div>
+
+            <div class="mono-label">subscription</div>
+            <div class="settings-row">
+              <span class="settings-label">Plan</span>
+              <span class="settings-value">Sustain it · €3.99/mo <span class="settings-chevron">›</span></span>
+            </div>
+            <div class="settings-row" style="cursor:pointer;">
+              <span class="settings-label" style="color:var(--brand);">Where does my money go?</span>
+              <span class="settings-chevron">›</span>
+            </div>
+
+            <div class="gap16"></div>
+            <div class="mono-label">app</div>
+            <div class="settings-row">
+              <span class="settings-label">Sounds</span>
+              <span class="settings-value">Calm set <span class="settings-chevron">›</span></span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Haptics</span>
+              <span class="settings-value">On <span class="settings-chevron">›</span></span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Appearance</span>
+              <span class="settings-value">Dark <span class="settings-chevron">›</span></span>
+            </div>
+
+            <div class="gap16"></div>
+            <div class="mono-label">about</div>
+            <div class="settings-row">
+              <span class="settings-label">one framework</span>
+              <span class="settings-chevron">›</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Privacy</span>
+              <span class="settings-chevron">›</span>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Version</span>
+              <span class="settings-value">1.0.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- ROUTINE COMPLETE -->
+    <div class="phone">
+      <div class="phone-label">routine complete</div>
+      <div class="phone-frame">
+        <div class="status-bar">
+          <span class="status-time">8:37</span>
+          <div style="width:90px;height:24px;background:#000;border-radius:16px;margin:0 auto;position:absolute;left:50%;transform:translateX(-50%);top:14px;"></div>
+          <span class="status-icons">●●●</span>
+        </div>
+        <div class="screen" style="padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:580px;">
+          <div style="text-align:center;padding:0 32px;">
+            <div style="width:80px;height:80px;border-radius:50%;border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 24px;color:var(--green-l);">✓</div>
+            <div style="font-size:28px;font-weight:300;margin-bottom:8px;letter-spacing:-0.5px;">Morning done.</div>
+            <div style="font-size:13px;color:var(--dim2);margin-bottom:32px;line-height:1.5;">37 minutes · 5 tasks<br>You're ready.</div>
+
+            <div style="background:var(--s2);border-radius:10px;padding:14px;margin-bottom:24px;text-align:left;">
+              <div style="font-size:11px;color:var(--dim);margin-bottom:6px;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;">NEXT UP</div>
+              <div style="font-size:14px;">Work start · 09:30</div>
+              <div style="font-size:11px;color:var(--dim2);margin-top:2px;">3 tasks · 33 min</div>
+            </div>
+
+            <div class="btn-secondary" style="margin-bottom:0;">Back to home</div>
+          </div>
+        </div>
+        <div class="home-indicator"><div class="home-bar"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

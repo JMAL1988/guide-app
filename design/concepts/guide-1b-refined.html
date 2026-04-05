@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #f5f2ee;
+      --s1:     #ebe6df;
+      --border: #c8bfb5;
+      --text:   #1a1a1a;
+      --dim:    #888;
+      --brand:  #8b7f72;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); font-family: 'IBM Plex Sans', sans-serif; padding: 48px 44px; width: 900px; }
+
+    .section { margin-bottom: 56px; }
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--brand); margin-bottom: 6px;
+    }
+    .section-desc { font-size: 11px; color: var(--dim); margin-bottom: 24px; font-weight: 300; }
+    .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+
+    .card {
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: 4px; padding: 28px 32px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px;
+    }
+    .card.dark { background: #0a0a0a; border-color: #222; }
+    .card.white { background: #fff; border-color: #ddd; }
+
+    .note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--dim); text-align: center;
+    }
+    .card.dark .note { color: #444; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+  </style>
+</head>
+<body>
+
+<!-- ── MARK ANATOMY ── -->
+<div class="section">
+  <div class="section-label">Mark 1b — The open G</div>
+  <div class="section-desc">A circle with intention. The gap is a door — it's open, inviting. The bar is the guide rail — structure, something to hold onto. Both ideas in one shape.</div>
+  <div class="row">
+
+    <!-- Original 1b -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">original 1b</div>
+    </div>
+
+    <!-- Bar shorter — more minimal -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="42" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">bar short</div>
+    </div>
+
+    <!-- Bar lower — resting -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="38" x2="50" y2="38" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">bar low</div>
+    </div>
+
+    <!-- Slightly wider gap — more open -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M48 13 A22 22 0 1 0 48 51" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="36" y1="32" x2="48" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">wider gap</div>
+    </div>
+
+    <!-- Heavier stroke -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="7" stroke-linecap="round"/>
+      </svg>
+      <div class="note">heavy stroke</div>
+    </div>
+
+    <!-- Lighter stroke — elegant -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="note">light stroke</div>
+    </div>
+
+    <!-- Bar with dot at end (one nod) -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="49" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="butt"/>
+        <circle cx="50" cy="32" r="3.5" fill="#8b7f72"/>
+      </svg>
+      <div class="note">bar + dot</div>
+    </div>
+
+    <!-- Brand color arc -->
+    <div class="card">
+      <svg width="80" height="80" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#8b7f72" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#8b7f72" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">brand color</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ── SIZES ── -->
+<div class="section">
+  <div class="section-label">Scale — app icon to display</div>
+  <div class="section-desc">Works from 16px to very large. The gap stays readable at all sizes.</div>
+  <div class="row" style="align-items:center;">
+
+    <div class="card" style="padding:16px 20px;">
+      <svg width="16" height="16" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <div class="note">16px</div>
+    </div>
+
+    <div class="card" style="padding:20px 24px;">
+      <svg width="32" height="32" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5.5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">32px</div>
+    </div>
+
+    <div class="card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">64px</div>
+    </div>
+
+    <div class="card">
+      <svg width="96" height="96" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">96px</div>
+    </div>
+
+    <div class="card">
+      <svg width="128" height="128" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">128px</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ── MARK + WORDMARK COMBOS ── -->
+<div class="section">
+  <div class="section-label">Mark + wordmark combinations</div>
+  <div class="section-desc">The mark alongside the name. Different relationships.</div>
+  <div class="row">
+
+    <!-- Horizontal: mark | Guide -->
+    <div class="card" style="min-width:260px; padding:32px 40px;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <svg width="44" height="44" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:38px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</span>
+      </div>
+      <div class="note">horizontal · 300 weight</div>
+    </div>
+
+    <!-- Horizontal: mark | divider | Guide -->
+    <div class="card" style="min-width:280px; padding:32px 40px;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg width="40" height="40" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <div style="width:1px;height:34px;background:#c8bfb5;"></div>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:36px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</span>
+      </div>
+      <div class="note">horizontal · divided</div>
+    </div>
+
+    <!-- Stacked: mark above Guide centered -->
+    <div class="card" style="min-width:180px; padding:32px 40px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <svg width="48" height="48" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</span>
+      </div>
+      <div class="note">stacked</div>
+    </div>
+
+    <!-- Mark small, wordmark dominant -->
+    <div class="card" style="min-width:240px; padding:32px 40px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="28" height="28" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:42px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</span>
+      </div>
+      <div class="note">mark small · word dominant</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ── DARK MODE ── -->
+<div class="section">
+  <div class="section-label">Dark mode</div>
+  <div class="section-desc">On dark — closer to the actual app experience on iPhone.</div>
+  <div class="row">
+
+    <div class="card dark" style="width:160px;height:160px;">
+      <svg width="72" height="72" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">white on black</div>
+    </div>
+
+    <div class="card dark" style="width:160px;height:160px;">
+      <svg width="72" height="72" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#a39589" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#a39589" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="note">brand-l on black</div>
+    </div>
+
+    <div class="card dark" style="min-width:280px;height:160px;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <svg width="48" height="48" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:38px;font-weight:300;color:#f0ede8;letter-spacing:-0.5px;line-height:1;">Guide</span>
+      </div>
+      <div class="note">mark + word · white on black</div>
+    </div>
+
+    <div class="card dark" style="min-width:180px;height:160px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <svg width="48" height="48" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#f0ede8;letter-spacing:-0.5px;line-height:1;">Guide</span>
+      </div>
+      <div class="note">stacked · dark</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ── SPLASH MOCKUPS ── -->
+<div class="section">
+  <div class="section-label">Splash screen mockups</div>
+  <div class="section-desc">The mark at launch. Light and dark.</div>
+  <div class="row" style="align-items:flex-start;gap:32px;">
+
+    <!-- Light splash -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <div style="width:240px;height:460px;background:#f5f2ee;border:1.5px solid #c8bfb5;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:14px;width:52px;height:5px;background:#c8bfb5;border-radius:3px;"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <svg width="72" height="72" viewBox="0 0 64 64">
+            <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:40px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</span>
+          <div style="width:28px;height:1px;background:#c8bfb5;margin:4px 0;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#888;">Structure for your day</span>
+        </div>
+        <div style="position:absolute;bottom:28px;display:flex;align-items:center;gap:5px;">
+          <img src="../../branding/one-logo-transparent.png" width="10" height="10" style="filter:brightness(0);opacity:0.3;display:block;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#aaa;">by one</span>
+        </div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#888;">light</div>
+    </div>
+
+    <!-- Dark splash -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <div style="width:240px;height:460px;background:#0a0a0a;border:1.5px solid #222;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:14px;width:52px;height:5px;background:#333;border-radius:3px;"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <svg width="72" height="72" viewBox="0 0 64 64">
+            <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:40px;font-weight:300;color:#f0ede8;letter-spacing:-0.5px;line-height:1;">Guide</span>
+          <div style="width:28px;height:1px;background:#333;margin:4px 0;"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#555;">Structure for your day</span>
+        </div>
+        <div style="position:absolute;bottom:28px;display:flex;align-items:center;gap:5px;">
+          <img src="../../branding/one-logo-transparent.png" width="10" height="10" style="filter:brightness(0) invert(1);opacity:0.3;display:block;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#444;">by one</span>
+        </div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#888;">dark</div>
+    </div>
+
+    <!-- App icon mockup -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:-20px;">app icon</div>
+
+      <!-- Large icon -->
+      <div style="width:120px;height:120px;background:#f5f2ee;border:1px solid #c8bfb5;border-radius:26px;display:flex;align-items:center;justify-content:center;">
+        <svg width="68" height="68" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <!-- Medium icon -->
+      <div style="width:76px;height:76px;background:#f5f2ee;border:1px solid #c8bfb5;border-radius:18px;display:flex;align-items:center;justify-content:center;">
+        <svg width="44" height="44" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <!-- Small icon -->
+      <div style="width:48px;height:48px;background:#f5f2ee;border:1px solid #c8bfb5;border-radius:11px;display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Dark icon -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:-20px;">dark icon</div>
+      <div style="width:120px;height:120px;background:#0a0a0a;border:1px solid #222;border-radius:26px;display:flex;align-items:center;justify-content:center;">
+        <svg width="68" height="68" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="width:76px;height:76px;background:#0a0a0a;border:1px solid #222;border-radius:18px;display:flex;align-items:center;justify-content:center;">
+        <svg width="44" height="44" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="5.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="width:48px;height:48px;background:#0a0a0a;border:1px solid #222;border-radius:11px;display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 64 64">
+          <path d="M50 16 A22 22 0 1 0 50 48" stroke="#f0ede8" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="50" y2="32" stroke="#f0ede8" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

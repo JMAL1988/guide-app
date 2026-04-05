@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f5f2ee; font-family: 'IBM Plex Sans', sans-serif; padding: 48px; width: 760px; }
+.label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+.desc { font-size: 11px; color: #888; margin-bottom: 32px; font-weight: 300; }
+.row { display: flex; flex-wrap: wrap; gap: 20px; }
+.card { background: #ebe6df; border: 1px solid #c8bfb5; border-radius: 3px; padding: 36px 44px; display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 180px; }
+.note { font-family: 'IBM Plex Mono', monospace; font-size: 8px; color: #a09890; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+</style></head><body>
+<div class="label">E — Node mark</div>
+<div class="desc">Three dots as waypoints — steps on a path. References the dot in the one mark. Minimal. Could show progress state on screen.</div>
+<div class="row">
+
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:10px;height:10px;border-radius:50%;background:#1a1a1a;"></div>
+      <div style="width:20px;height:1px;background:#c8bfb5;"></div>
+      <div style="width:10px;height:10px;border-radius:50%;background:#1a1a1a;"></div>
+      <div style="width:20px;height:1px;background:#c8bfb5;"></div>
+      <div style="width:10px;height:10px;border-radius:50%;background:#c8bfb5;"></div>
+    </div>
+    <div class="note">path · step 2/3 active</div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;gap:7px;">
+        <div style="width:11px;height:11px;border-radius:50%;background:#1a1a1a;"></div>
+        <div style="width:11px;height:11px;border-radius:50%;background:#1a1a1a;"></div>
+        <div style="width:11px;height:11px;border-radius:50%;background:#1a1a1a;"></div>
+      </div>
+      <div style="width:1px;height:30px;background:#c8bfb5;"></div>
+      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</div>
+    </div>
+    <div class="note">3 nodes + wordmark</div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="display:flex;gap:7px;">
+        <div style="width:9px;height:9px;border-radius:50%;background:#1a1a1a;"></div>
+        <div style="width:9px;height:9px;border-radius:50%;background:#1a1a1a;"></div>
+        <div style="width:9px;height:9px;border-radius:50%;background:#1a1a1a;"></div>
+      </div>
+      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:32px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;line-height:1;">Guide</div>
+    </div>
+    <div class="note">stacked</div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div style="width:14px;height:14px;border-radius:50%;background:#1a1a1a;"></div>
+      <div style="width:10px;height:10px;border-radius:50%;background:#8b7f72;"></div>
+      <div style="width:7px;height:7px;border-radius:50%;background:#c8bfb5;"></div>
+    </div>
+    <div class="note">diminishing · horizon</div>
+  </div>
+
+</div>
+</body></html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #f5f2ee;
+      --s1:     #ebe6df;
+      --s2:     #e0d9d0;
+      --border: #c8bfb5;
+      --text:   #1a1a1a;
+      --dim:    #888888;
+      --brand:  #6b5f52;
+      --brand-l:#8b7f72;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); font-family: 'IBM Plex Sans', sans-serif; padding: 48px 44px; width: 900px; }
+
+    .page-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 48px;
+    }
+
+    .group { margin-bottom: 56px; }
+    .group-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--brand-l); margin-bottom: 6px;
+    }
+    .group-desc {
+      font-size: 11px; color: var(--dim); margin-bottom: 24px; font-weight: 300;
+    }
+
+    .marks { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    .mark-card {
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      width: 140px; height: 140px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; cursor: default;
+    }
+    .mark-card.dark {
+      background: #111; border-color: #2a2a2a;
+    }
+    .mark-card.wide {
+      width: 200px;
+    }
+    .mark-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--dim); text-align: center; line-height: 1.4;
+    }
+    .mark-card.dark .mark-name { color: #555; }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+  </style>
+</head>
+<body>
+
+<div class="page-title">Guide — Logo marks · Full exploration</div>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 1: G letterform -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">01 — G letterform</div>
+  <div class="group-desc">The G is already a partial circle. Every manipulation of it means something.</div>
+  <div class="marks">
+
+    <!-- G almost closed = G becoming O -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M54 32 A22 22 0 1 0 46 50" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="46" y1="32" x2="54" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">G classic</div>
+    </div>
+
+    <!-- G with large gap = open, beginning -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M50 16 A22 22 0 1 0 50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="38" y1="32" x2="50" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">G open</div>
+    </div>
+
+    <!-- G closing into O — gap nearly closed, bar barely visible -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <!-- Almost closed circle -->
+        <path d="M54 26 A22 22 0 1 0 54 38" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- Tiny inner bar -->
+        <line x1="44" y1="32" x2="54" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round" opacity="0.35"/>
+      </svg>
+      <div class="mark-name">G → O (closing)</div>
+    </div>
+
+    <!-- G with dot in center (one reference) -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M54 32 A22 22 0 1 0 46 50" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="46" y1="32" x2="54" y2="32" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="4" fill="#8b7f72"/>
+      </svg>
+      <div class="mark-name">G + center dot</div>
+    </div>
+
+    <!-- Overlapping G / double arc -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M54 32 A22 22 0 1 0 46 50" stroke="#1a1a1a" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="1"/>
+        <path d="M50 32 A16 16 0 1 0 43.3 43.3" stroke="#8b7f72" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <line x1="46" y1="32" x2="54" y2="32" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">G layered</div>
+    </div>
+
+    <!-- Bold G, filled partial -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 10 A22 22 0 0 0 10 32 A22 22 0 0 0 32 54 A22 22 0 0 0 54 32 L42 32" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="42" y1="26" x2="42" y2="38" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">G bold gate</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 2: Circle & arc marks -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">02 — Circle & arc</div>
+  <div class="group-desc">Routine is a loop. Completeness. Return. The arc is a countdown, a timer, a phase.</div>
+  <div class="marks">
+
+    <!-- Circle with progress arc - 75% complete -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="22" stroke="#e0d9d0" stroke-width="5" fill="none"/>
+        <path d="M32 10 A22 22 0 1 1 10.3 43" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="10" r="3.5" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Progress arc</div>
+    </div>
+
+    <!-- Concentric arcs - layers of routine -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 12 A20 20 0 1 1 12 32" stroke="#1a1a1a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M32 20 A12 12 0 1 1 20 32" stroke="#8b7f72" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="28" r="3" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Concentric arcs</div>
+    </div>
+
+    <!-- Arc with pointer / clock hand -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M16 48 A22 22 0 1 1 48 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="32" y1="32" x2="32" y2="13" stroke="#1a1a1a" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="3.5" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Arc + hand</div>
+    </div>
+
+    <!-- Circle with gap top - open cycle -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M38 11 A22 22 0 1 1 26 11" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="32" y1="10" x2="32" y2="22" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round" opacity="0"/>
+      </svg>
+      <div class="mark-name">Circle with gap</div>
+    </div>
+
+    <!-- Two arcs mirrored - morning / night -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M12 32 A20 20 0 0 1 52 32" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M12 34 A20 20 0 0 0 52 34" stroke="#8b7f72" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <div class="mark-name">Day arc / night arc</div>
+    </div>
+
+    <!-- Spiral / coil - routine accumulating -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 32 m0 -6 a6 6 0 1 1 -0.01 0 m0 -6 a12 12 0 1 1 -0.01 0 m0 -6 a18 18 0 1 1 -0.01 0" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Spiral (habit loop)</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 3: Wordmarks with custom G -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">03 — Custom wordmark</div>
+  <div class="group-desc">The name "Guide" with the G doing extra work. The rest in IBM Plex.</div>
+  <div class="marks">
+
+    <!-- Guide: G as arc, rest in Plex -->
+    <div class="mark-card wide">
+      <div style="display:flex;align-items:center;gap:0;line-height:1;">
+        <svg width="32" height="42" viewBox="0 0 32 42" style="flex-shrink:0;margin-right:1px;">
+          <path d="M28 16 A13 13 0 1 0 22 28" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <line x1="22" y1="21" x2="28" y2="21" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:28px;font-weight:300;color:#1a1a1a;letter-spacing:-0.3px;">uide</span>
+      </div>
+      <div class="mark-name">SVG G + Plex "uide"</div>
+    </div>
+
+    <!-- Guide: underscore on the G only -->
+    <div class="mark-card wide">
+      <div style="position:relative;display:inline-block;">
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:30px;font-weight:300;color:#1a1a1a;letter-spacing:-0.5px;">Guide</span>
+        <div style="position:absolute;bottom:-4px;left:0;width:19px;height:2px;background:#8b7f72;border-radius:1px;"></div>
+      </div>
+      <div class="mark-name">G underlined · accent</div>
+    </div>
+
+    <!-- Guide: G in brand color -->
+    <div class="mark-card wide">
+      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:30px;font-weight:300;letter-spacing:-0.5px;">
+        <span style="color:#8b7f72;">G</span><span style="color:#1a1a1a;">uide</span>
+      </span>
+      <div class="mark-name">G in brand · rest dark</div>
+    </div>
+
+    <!-- Guide: bold G, light rest -->
+    <div class="mark-card wide">
+      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:30px;letter-spacing:-0.5px;">
+        <span style="font-weight:600;color:#1a1a1a;">G</span><span style="font-weight:200;color:#1a1a1a;">uide</span>
+      </span>
+      <div class="mark-name">G bold / uide light</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 4: Path & navigation -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">04 — Path & navigation</div>
+  <div class="group-desc">Guide as a verb: to lead, to show the way. Motion, direction, waypoints.</div>
+  <div class="marks">
+
+    <!-- Arrow through arch -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M14 48 L14 28 A18 18 0 0 1 50 28 L50 48" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="32" y1="52" x2="32" y2="20" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <polyline points="24,28 32,20 40,28" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="mark-name">Arrow through gate</div>
+    </div>
+
+    <!-- Dotted path curving to waypoint -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M12 52 C12 36 52 36 52 16" stroke="#c8bfb5" stroke-width="3" fill="none" stroke-dasharray="3 5" stroke-linecap="round"/>
+        <circle cx="12" cy="52" r="4" fill="#8b7f72"/>
+        <circle cx="52" cy="16" r="5.5" fill="#1a1a1a"/>
+        <circle cx="52" cy="16" r="2.5" fill="#f5f2ee"/>
+      </svg>
+      <div class="mark-name">Dotted path</div>
+    </div>
+
+    <!-- Three steps ascending with forward arrow -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <polyline points="10,50 10,38 24,38 24,26 38,26 38,14 54,14" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="46,8 54,14 46,20" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="mark-name">Step staircase</div>
+    </div>
+
+    <!-- Compass needle -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="20" stroke="#c8bfb5" stroke-width="2" fill="none"/>
+        <polygon points="32,14 28,32 32,30 36,32" fill="#1a1a1a"/>
+        <polygon points="32,50 28,32 32,34 36,32" fill="#c8bfb5"/>
+        <circle cx="32" cy="32" r="3" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Compass</div>
+    </div>
+
+    <!-- Chevron / forward -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <polyline points="18,16 38,32 18,48" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="30,16 50,32 30,48" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+      </svg>
+      <div class="mark-name">Double chevron</div>
+    </div>
+
+    <!-- Pin / location mark -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 12 A14 14 0 0 0 18 26 C18 38 32 52 32 52 C32 52 46 38 46 26 A14 14 0 0 0 32 12 Z" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linejoin="round"/>
+        <circle cx="32" cy="26" r="5" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Pin / here</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 5: Rhythm & haptic -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">05 — Rhythm & haptic</div>
+  <div class="group-desc">Guide is felt on the wrist. Time made tangible. Pulse, wave, beat.</div>
+  <div class="marks">
+
+    <!-- Haptic ripple -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="6" fill="#1a1a1a"/>
+        <circle cx="32" cy="32" r="13" stroke="#1a1a1a" stroke-width="3" fill="none" opacity="0.5"/>
+        <circle cx="32" cy="32" r="21" stroke="#1a1a1a" stroke-width="2" fill="none" opacity="0.2"/>
+      </svg>
+      <div class="mark-name">Haptic ripple</div>
+    </div>
+
+    <!-- Sine / pulse wave -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M8 32 C14 32 14 14 20 14 C26 14 26 50 32 50 C38 50 38 14 44 14 C50 14 50 32 56 32" stroke="#1a1a1a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Pulse wave</div>
+    </div>
+
+    <!-- Metronome -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <polygon points="32,8 16,56 48,56" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+        <line x1="32" y1="36" x2="42" y2="20" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="42" cy="20" r="3.5" fill="#8b7f72"/>
+        <line x1="22" y1="46" x2="42" y2="46" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Metronome</div>
+    </div>
+
+    <!-- Three ascending bars (refined D) -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect x="10" y="38" width="12" height="18" rx="6" fill="#1a1a1a"/>
+        <rect x="26" y="26" width="12" height="30" rx="6" fill="#1a1a1a"/>
+        <rect x="42" y="14" width="12" height="42" rx="6" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Step bars (refined)</div>
+    </div>
+
+    <!-- Wristband arc (watch) -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect x="20" y="18" width="24" height="28" rx="6" stroke="#1a1a1a" stroke-width="4.5" fill="none"/>
+        <line x1="26" y1="18" x2="22" y2="10" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="38" y1="18" x2="42" y2="10" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="26" y1="46" x2="22" y2="54" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="38" y1="46" x2="42" y2="54" stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="27" y1="32" x2="37" y2="32" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+        <line x1="32" y1="27" x2="32" y2="32" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Watch / wrist</div>
+    </div>
+
+    <!-- Heartbeat / EKG flat line then spike -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M8 32 L20 32 L24 20 L28 44 L32 16 L36 48 L40 32 L56 32" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="mark-name">EKG / pulse</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 6: Abstract / conceptual -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">06 — Abstract & conceptual</div>
+  <div class="group-desc">Looser ideas. What Guide *feels* like — not what it does.</div>
+  <div class="marks">
+
+    <!-- Threshold / doorway -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M18 54 L18 18 A14 14 0 0 1 46 18 L46 54" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="12" y1="54" x2="52" y2="54" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Doorway / threshold</div>
+    </div>
+
+    <!-- Anchor -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="18" r="6" stroke="#1a1a1a" stroke-width="4" fill="none"/>
+        <line x1="32" y1="24" x2="32" y2="52" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <path d="M18 36 C18 48 46 48 46 36" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <line x1="20" y1="34" x2="18" y2="36" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="44" y1="34" x2="46" y2="36" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="22" y1="36" x2="14" y2="36" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="42" y1="36" x2="50" y2="36" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Anchor (grounding)</div>
+    </div>
+
+    <!-- Knot / habit loop -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 10 C50 10 54 32 40 36 C26 40 26 48 32 54 C38 60 52 56 52 44" stroke="#1a1a1a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M32 10 C14 10 10 32 24 36 C38 40 38 48 32 54" stroke="#8b7f72" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <div class="mark-name">Loop / knot</div>
+    </div>
+
+    <!-- Fingerprint (personal, ADHD) -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 52 C14 52 10 36 10 28 C10 18 20 10 32 10 C44 10 54 18 54 28 C54 36 50 52 32 52" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M32 44 C20 44 18 34 18 28 C18 22 24 18 32 18 C40 18 46 22 46 28 C46 34 44 44 32 44" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 36 C26 36 26 30 26 28 C26 25 28.5 22 32 22 C35.5 22 38 25 38 28 C38 30 38 36 32 36" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="28" r="3" fill="#1a1a1a"/>
+      </svg>
+      <div class="mark-name">Fingerprint (personal)</div>
+    </div>
+
+    <!-- Hourglass -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M16 10 L48 10 L32 32 L48 54 L16 54 L32 32 Z" stroke="#1a1a1a" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="mark-name">Hourglass (time)</div>
+    </div>
+
+    <!-- Bracket / frame - holding a moment -->
+    <div class="mark-card">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M24 14 L14 14 L14 50 L24 50" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M40 14 L50 14 L50 50 L40 50" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="32" cy="32" r="4" fill="#8b7f72"/>
+      </svg>
+      <div class="mark-name">Brackets / held moment</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- GROUP 7: Dark mode previews of best marks -->
+<!-- ─────────────────────────────────────────── -->
+<div class="group">
+  <div class="group-label">07 — Dark mode (strongest marks)</div>
+  <div class="group-desc">How the marks read on dark — closer to the app experience.</div>
+  <div class="marks">
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M54 26 A22 22 0 1 0 54 38" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="44" y1="32" x2="54" y2="32" stroke="#f0ede8" stroke-width="5" stroke-linecap="round" opacity="0.35"/>
+      </svg>
+      <div class="mark-name">G → O</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <rect x="10" y="38" width="12" height="18" rx="6" fill="#f0ede8"/>
+        <rect x="26" y="26" width="12" height="30" rx="6" fill="#f0ede8"/>
+        <rect x="42" y="14" width="12" height="42" rx="6" fill="#f0ede8"/>
+      </svg>
+      <div class="mark-name">Step bars</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="6" fill="#f0ede8"/>
+        <circle cx="32" cy="32" r="13" stroke="#f0ede8" stroke-width="3" fill="none" opacity="0.5"/>
+        <circle cx="32" cy="32" r="21" stroke="#f0ede8" stroke-width="2" fill="none" opacity="0.2"/>
+      </svg>
+      <div class="mark-name">Haptic ripple</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M32 10 A22 22 0 1 1 10.3 43" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="10" r="3.5" fill="#f0ede8"/>
+      </svg>
+      <div class="mark-name">Progress arc</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M8 32 L20 32 L24 20 L28 44 L32 16 L36 48 L40 32 L56 32" stroke="#f0ede8" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="mark-name">EKG / pulse</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M18 54 L18 18 A14 14 0 0 1 46 18 L46 54" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="12" y1="54" x2="52" y2="54" stroke="#f0ede8" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Doorway</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M16 48 A22 22 0 1 1 48 48" stroke="#f0ede8" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <line x1="32" y1="32" x2="32" y2="13" stroke="#f0ede8" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="3.5" fill="#f0ede8"/>
+      </svg>
+      <div class="mark-name">Arc + hand</div>
+    </div>
+
+    <div class="mark-card dark">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <path d="M8 32 C14 32 14 14 20 14 C26 14 26 50 32 50 C38 50 38 14 44 14 C50 14 50 32 56 32" stroke="#f0ede8" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="mark-name">Pulse wave</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

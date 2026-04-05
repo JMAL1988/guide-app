@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide — Audience Themes</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500&family=IBM+Plex+Mono:wght@300;400&family=Nunito:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f0f0f;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      padding: 64px 48px;
+      color: #f0ede8;
+    }
+
+    .page-header {
+      margin-bottom: 80px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #262626;
+    }
+    .page-header h1 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b7f72;
+      margin-bottom: 6px;
+    }
+    .page-header p { font-size: 11px; color: #555; }
+
+    .section { margin-bottom: 96px; }
+    .section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .theme-desc {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 32px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    .phones-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .phone { width: 300px; flex-shrink: 0; }
+    .phone-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .phone-frame {
+      width: 300px;
+      border-radius: 42px;
+      border: 2px solid #222;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px #111, 0 16px 48px rgba(0,0,0,0.5);
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 26px 6px;
+      font-size: 11px;
+      font-weight: 500;
+      position: relative;
+    }
+    .dyn-island {
+      width: 82px;
+      height: 24px;
+      background: #000;
+      border-radius: 16px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 12px;
+    }
+    .status-icons { font-size: 9px; }
+
+    .screen { min-height: 560px; }
+    .sp { padding: 0 22px; }
+
+    .home-indicator {
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 6px;
+    }
+
+    /* ═══════════════════════════════════════
+       THEME 1 — INDIVIDUAL (default dark)
+    ═══════════════════════════════════════ */
+    .t1 { background: #0a0a0a; }
+    .t1 .status-bar { color: #f0ede8; }
+    .t1 .home-bar { width: 96px; height: 4px; background: #333; border-radius: 2px; }
+    .t1 .screen-title { font-family: 'IBM Plex Sans', sans-serif; font-weight: 300; font-size: 26px; color: #f0ede8; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .t1 .screen-sub { font-size: 12px; color: #666; margin-bottom: 20px; }
+    .t1 .tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 8px; border-radius: 3px; color: #8b7f72; background: #2a2218; display: inline-block; margin-bottom: 18px; }
+    .t1 .mono-label { font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #444; margin-bottom: 10px; }
+    .t1 .row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #1e1e1e; }
+    .t1 .row:last-child { border-bottom: none; }
+    .t1 .row-icon { width: 36px; height: 36px; background: #1a1a1a; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .t1 .row-name { font-size: 13px; color: #f0ede8; margin-bottom: 2px; font-weight: 400; }
+    .t1 .row-meta { font-size: 10px; color: #555; }
+    .t1 .row-badge { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #8b7f72; }
+    .t1 .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 22px 12px; }
+    .t1 .nav-back { font-size: 12px; color: #8b7f72; }
+    .t1 .nav-title { font-size: 13px; font-weight: 400; color: #f0ede8; }
+    .t1 .timer { font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 300; letter-spacing: -2px; color: #f0ede8; }
+    .t1 .timer-label { font-size: 11px; color: #555; margin-top: 4px; }
+    .t1 .next-card { background: #1a1a1a; border-radius: 10px; padding: 12px 14px; }
+    .t1 .next-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #8b7f72; margin-bottom: 4px; }
+    .t1 .next-name { font-size: 13px; color: #f0ede8; }
+    .t1 .btn { width: 100%; padding: 15px; border-radius: 11px; text-align: center; font-size: 14px; }
+    .t1 .btn-p { background: #f0ede8; color: #0a0a0a; font-weight: 400; }
+    .t1 .btn-s { background: #1a1a1a; color: #f0ede8; font-weight: 300; }
+    .t1 .prog { height: 3px; background: #222; border-radius: 2px; margin-bottom: 20px; }
+    .t1 .prog-fill { height: 3px; background: #8b7f72; border-radius: 2px; }
+
+    /* ═══════════════════════════════════════
+       THEME 2 — FAMILY (warm, friendly)
+    ═══════════════════════════════════════ */
+    .t2 { background: #faf7f2; }
+    .t2 .status-bar { color: #2c2118; }
+    .t2 .home-bar { width: 96px; height: 4px; background: #d4c9bc; border-radius: 2px; }
+    .t2 .screen-title { font-family: 'Nunito', sans-serif; font-weight: 400; font-size: 26px; color: #2c2118; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .t2 .screen-sub { font-size: 12px; color: #9a8878; margin-bottom: 20px; font-family: 'Nunito', sans-serif; }
+    .t2 .tag { font-family: 'Nunito', sans-serif; font-size: 10px; padding: 5px 10px; border-radius: 20px; color: #c47a3a; background: rgba(196,122,58,0.12); display: inline-block; margin-bottom: 18px; font-weight: 500; }
+    .t2 .mono-label { font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #b0a090; margin-bottom: 10px; }
+    .t2 .row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #ede5d8; }
+    .t2 .row:last-child { border-bottom: none; }
+    .t2 .row-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .t2 .row-icon.warm1 { background: rgba(196,122,58,0.14); }
+    .t2 .row-icon.warm2 { background: rgba(94,150,100,0.12); }
+    .t2 .row-icon.warm3 { background: rgba(100,130,180,0.12); }
+    .t2 .row-name { font-family: 'Nunito', sans-serif; font-size: 14px; color: #2c2118; margin-bottom: 2px; font-weight: 500; }
+    .t2 .row-meta { font-size: 11px; color: #9a8878; font-family: 'Nunito', sans-serif; }
+    .t2 .row-badge { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #c47a3a; }
+    .t2 .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 22px 12px; }
+    .t2 .nav-back { font-family: 'Nunito', sans-serif; font-size: 13px; color: #c47a3a; font-weight: 500; }
+    .t2 .nav-title { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 500; color: #2c2118; }
+    .t2 .timer { font-family: 'Nunito', sans-serif; font-size: 44px; font-weight: 300; color: #2c2118; letter-spacing: -1px; }
+    .t2 .timer-label { font-size: 11px; color: #9a8878; margin-top: 4px; font-family: 'Nunito', sans-serif; }
+    .t2 .next-card { background: rgba(196,122,58,0.08); border-radius: 12px; padding: 12px 14px; border: 1px solid rgba(196,122,58,0.15); }
+    .t2 .next-label { font-family: 'Nunito', sans-serif; font-size: 10px; color: #c47a3a; margin-bottom: 4px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    .t2 .next-name { font-family: 'Nunito', sans-serif; font-size: 13px; color: #2c2118; font-weight: 500; }
+    .t2 .btn { width: 100%; padding: 15px; border-radius: 14px; text-align: center; font-family: 'Nunito', sans-serif; font-size: 15px; }
+    .t2 .btn-p { background: #2c2118; color: #faf7f2; font-weight: 500; }
+    .t2 .btn-s { background: #ede5d8; color: #2c2118; font-weight: 400; }
+    .t2 .prog { height: 4px; background: #ede5d8; border-radius: 3px; margin-bottom: 20px; }
+    .t2 .prog-fill { height: 4px; background: #c47a3a; border-radius: 3px; }
+
+    /* ═══════════════════════════════════════
+       THEME 3 — CLINICAL / SCHOOL
+    ═══════════════════════════════════════ */
+    .t3 { background: #ffffff; }
+    .t3 .status-bar { color: #1a2035; }
+    .t3 .home-bar { width: 96px; height: 4px; background: #d8dce8; border-radius: 2px; }
+    .t3 .screen-title { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 24px; color: #1a2035; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .t3 .screen-sub { font-size: 12px; color: #8a90a4; margin-bottom: 20px; font-family: 'DM Sans', sans-serif; }
+    .t3 .tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1px; padding: 4px 9px; border-radius: 4px; color: #3d5a9e; background: rgba(61,90,158,0.1); display: inline-block; margin-bottom: 18px; }
+    .t3 .mono-label { font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #a0a8bf; margin-bottom: 10px; }
+    .t3 .row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #edf0f7; }
+    .t3 .row:last-child { border-bottom: none; }
+    .t3 .row-icon { width: 36px; height: 36px; background: #f0f2f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .t3 .row-name { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #1a2035; margin-bottom: 2px; font-weight: 500; }
+    .t3 .row-meta { font-size: 11px; color: #8a90a4; font-family: 'DM Sans', sans-serif; }
+    .t3 .row-badge { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #3d5a9e; }
+    .t3 .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 22px 12px; }
+    .t3 .nav-back { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #3d5a9e; font-weight: 500; }
+    .t3 .nav-title { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #1a2035; }
+    .t3 .timer { font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 300; color: #1a2035; letter-spacing: -2px; }
+    .t3 .timer-label { font-size: 11px; color: #8a90a4; margin-top: 4px; font-family: 'DM Sans', sans-serif; }
+    .t3 .next-card { background: #f0f2f9; border-radius: 10px; padding: 12px 14px; }
+    .t3 .next-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #3d5a9e; margin-bottom: 4px; text-transform: uppercase; }
+    .t3 .next-name { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #1a2035; font-weight: 400; }
+    .t3 .btn { width: 100%; padding: 15px; border-radius: 10px; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 14px; }
+    .t3 .btn-p { background: #1a2035; color: #fff; font-weight: 500; }
+    .t3 .btn-s { background: #f0f2f9; color: #1a2035; font-weight: 400; }
+    .t3 .prog { height: 3px; background: #edf0f7; border-radius: 2px; margin-bottom: 20px; }
+    .t3 .prog-fill { height: 3px; background: #3d5a9e; border-radius: 2px; }
+
+    /* ═══════════════════════════════════════
+       THEME 4 — CALM / WELLNESS
+    ═══════════════════════════════════════ */
+    .t4 { background: #f2f5f0; }
+    .t4 .status-bar { color: #283022; }
+    .t4 .home-bar { width: 96px; height: 4px; background: #c8d4c0; border-radius: 2px; }
+    .t4 .screen-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: 28px; color: #283022; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .t4 .screen-sub { font-size: 12px; color: #7a9070; margin-bottom: 20px; }
+    .t4 .tag { font-size: 10px; padding: 5px 10px; border-radius: 20px; color: #4a7040; background: rgba(74,112,64,0.1); display: inline-block; margin-bottom: 18px; }
+    .t4 .mono-label { font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #9ab090; margin-bottom: 10px; }
+    .t4 .row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #dde8d5; }
+    .t4 .row:last-child { border-bottom: none; }
+    .t4 .row-icon { width: 38px; height: 38px; background: #e2ecda; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .t4 .row-name { font-size: 13px; color: #283022; margin-bottom: 2px; font-weight: 400; }
+    .t4 .row-meta { font-size: 11px; color: #7a9070; }
+    .t4 .row-badge { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #4a7040; }
+    .t4 .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 22px 12px; }
+    .t4 .nav-back { font-size: 12px; color: #4a7040; }
+    .t4 .nav-title { font-size: 13px; font-weight: 400; color: #283022; }
+    .t4 .timer { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 300; color: #283022; letter-spacing: -1px; }
+    .t4 .timer-label { font-size: 11px; color: #7a9070; margin-top: 4px; }
+    .t4 .next-card { background: #e2ecda; border-radius: 12px; padding: 12px 14px; }
+    .t4 .next-label { font-size: 9px; letter-spacing: 1px; color: #4a7040; margin-bottom: 4px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace; }
+    .t4 .next-name { font-size: 13px; color: #283022; }
+    .t4 .btn { width: 100%; padding: 15px; border-radius: 14px; text-align: center; font-size: 14px; }
+    .t4 .btn-p { background: #283022; color: #f2f5f0; font-weight: 400; }
+    .t4 .btn-s { background: #dde8d5; color: #283022; font-weight: 300; }
+    .t4 .prog { height: 3px; background: #dde8d5; border-radius: 2px; margin-bottom: 20px; }
+    .t4 .prog-fill { height: 3px; background: #4a7040; border-radius: 2px; }
+
+    /* ═══════════════════════════════════════
+       THEME 5 — FOCUS / ULTRA MINIMAL
+    ═══════════════════════════════════════ */
+    .t5 { background: #f8f8f8; }
+    .t5 .status-bar { color: #111; }
+    .t5 .home-bar { width: 96px; height: 3px; background: #ccc; border-radius: 2px; }
+    .t5 .screen-title { font-family: 'IBM Plex Sans', sans-serif; font-weight: 200; font-size: 28px; color: #111; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .t5 .screen-sub { font-size: 12px; color: #aaa; margin-bottom: 20px; font-weight: 300; }
+    .t5 .tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1.5px; padding: 4px 8px; border-radius: 2px; color: #333; background: #ebebeb; display: inline-block; margin-bottom: 18px; }
+    .t5 .mono-label { font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
+    .t5 .row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid #eee; }
+    .t5 .row:last-child { border-bottom: none; }
+    .t5 .row-icon { width: 36px; height: 36px; background: #f0f0f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; filter: grayscale(1); }
+    .t5 .row-name { font-size: 13px; color: #111; margin-bottom: 2px; font-weight: 400; }
+    .t5 .row-meta { font-size: 10px; color: #aaa; }
+    .t5 .row-badge { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #888; }
+    .t5 .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 22px 12px; }
+    .t5 .nav-back { font-size: 12px; color: #aaa; }
+    .t5 .nav-title { font-size: 13px; font-weight: 400; color: #111; }
+    .t5 .timer { font-family: 'IBM Plex Mono', monospace; font-size: 48px; font-weight: 200; color: #111; letter-spacing: -2px; }
+    .t5 .timer-label { font-size: 11px; color: #aaa; margin-top: 4px; }
+    .t5 .next-card { background: #f0f0f0; border-radius: 8px; padding: 12px 14px; }
+    .t5 .next-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #888; margin-bottom: 4px; text-transform: uppercase; }
+    .t5 .next-name { font-size: 13px; color: #111; font-weight: 300; }
+    .t5 .btn { width: 100%; padding: 15px; border-radius: 8px; text-align: center; font-size: 14px; }
+    .t5 .btn-p { background: #111; color: #f8f8f8; font-weight: 300; }
+    .t5 .btn-s { background: #ebebeb; color: #111; font-weight: 300; }
+    .t5 .prog { height: 2px; background: #e0e0e0; border-radius: 2px; margin-bottom: 20px; }
+    .t5 .prog-fill { height: 2px; background: #888; border-radius: 2px; }
+
+    /* shared phone divider */
+    .phone-frame hr { border: none; border-top: 1px solid rgba(128,128,128,0.15); }
+
+    /* theme label card */
+    .theme-header {
+      margin-bottom: 12px;
+    }
+    .theme-name {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: -0.3px;
+      margin-bottom: 2px;
+    }
+    .theme-audience {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>guide — audience themes</h1>
+  <p>5 themes · same screens · different audiences · 2026-03-11</p>
+</div>
+
+
+<!-- overview row — home screen across all themes -->
+<div class="section">
+  <div class="section-title">01 — home screen across all themes</div>
+  <div class="theme-desc">Same structure. Same content. Completely different audience feel.</div>
+  <div class="phones-row">
+
+    <!-- THEME 1: INDIVIDUAL -->
+    <div class="phone">
+      <div class="theme-header">
+        <div class="theme-name" style="color:#f0ede8;">Individual</div>
+        <div class="theme-audience">ADHD adults + teens · dark · minimal</div>
+      </div>
+      <div class="phone-label">home</div>
+      <div class="phone-frame t1">
+        <div class="status-bar t1"><span style="font-weight:500;font-size:13px;">7:43</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t1" style="padding:16px 0 0;">
+          <div class="sp">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <div class="screen-title t1">Good morning.</div>
+              <span style="font-size:11px;color:#444;">Tue</span>
+            </div>
+            <div class="screen-sub t1">3 routines today.</div>
+            <div class="tag t1">next up · 12 min</div>
+            <div class="mono-label t1">routines</div>
+            <div class="row t1"><div class="row-icon t1">☀</div><div class="list-text"><div class="row-name t1">Morning</div><div class="row-meta t1">5 tasks · 37 min</div></div><div class="row-badge t1">now</div></div>
+            <div class="row t1" style="opacity:.5;"><div class="row-icon t1">◉</div><div class="list-text"><div class="row-name t1">Work start</div><div class="row-meta t1">3 tasks · 33 min</div></div><div class="row-badge t1">09:30</div></div>
+            <div class="row t1" style="opacity:.5;"><div class="row-icon t1">◌</div><div class="list-text"><div class="row-name t1">Evening</div><div class="row-meta t1">4 tasks · 30 min</div></div><div class="row-badge t1">21:00</div></div>
+            <div style="padding:14px 0;font-size:12px;color:#555;">+ add routine</div>
+          </div>
+        </div>
+        <div class="home-indicator t1"><div class="home-bar t1"></div></div>
+      </div>
+    </div>
+
+    <!-- THEME 2: FAMILY -->
+    <div class="phone">
+      <div class="theme-header">
+        <div class="theme-name" style="color:#f0ede8;">Family</div>
+        <div class="theme-audience">parents + kids · warm · friendly</div>
+      </div>
+      <div class="phone-label">home</div>
+      <div class="phone-frame t2">
+        <div class="status-bar t2"><span style="font-weight:500;font-size:13px;">7:43</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t2" style="padding:16px 0 0;">
+          <div class="sp">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <div class="screen-title t2">Good morning!</div>
+              <span style="font-size:11px;color:#b0a090;font-family:'Nunito',sans-serif;">Tue</span>
+            </div>
+            <div class="screen-sub t2">3 routines today.</div>
+            <div class="tag t2">next up in 12 min</div>
+            <div class="mono-label t2">routines</div>
+            <div class="row t2"><div class="row-icon t2 warm1">☀</div><div class="list-text"><div class="row-name t2">Morning</div><div class="row-meta t2">5 tasks · 37 min</div></div><div class="row-badge t2">now</div></div>
+            <div class="row t2" style="opacity:.55;"><div class="row-icon t2 warm2">◉</div><div class="list-text"><div class="row-name t2">Work start</div><div class="row-meta t2">3 tasks · 33 min</div></div><div class="row-badge t2">09:30</div></div>
+            <div class="row t2" style="opacity:.55;"><div class="row-icon t2 warm3">🌙</div><div class="list-text"><div class="row-name t2">Bedtime</div><div class="row-meta t2">4 tasks · 30 min</div></div><div class="row-badge t2">21:00</div></div>
+            <div style="padding:14px 0;font-size:12px;color:#c47a3a;font-family:'Nunito',sans-serif;font-weight:500;">+ Add routine</div>
+          </div>
+        </div>
+        <div class="home-indicator t2"><div class="home-bar t2"></div></div>
+      </div>
+    </div>
+
+    <!-- THEME 3: CLINICAL -->
+    <div class="phone">
+      <div class="theme-header">
+        <div class="theme-name" style="color:#f0ede8;">Clinical</div>
+        <div class="theme-audience">schools + therapists · clean · trusted</div>
+      </div>
+      <div class="phone-label">home</div>
+      <div class="phone-frame t3">
+        <div class="status-bar t3"><span style="font-weight:500;font-size:13px;">7:43</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t3" style="padding:16px 0 0;">
+          <div class="sp">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <div class="screen-title t3">Good morning.</div>
+              <span style="font-size:11px;color:#a0a8bf;font-family:'DM Sans',sans-serif;">Tue</span>
+            </div>
+            <div class="screen-sub t3">3 routines scheduled.</div>
+            <div class="tag t3">active · 12 min</div>
+            <div class="mono-label t3">today's routines</div>
+            <div class="row t3"><div class="row-icon t3">☀</div><div class="list-text"><div class="row-name t3">Morning routine</div><div class="row-meta t3">5 tasks · 37 min</div></div><div class="row-badge t3">active</div></div>
+            <div class="row t3" style="opacity:.5;"><div class="row-icon t3">◉</div><div class="list-text"><div class="row-name t3">Work preparation</div><div class="row-meta t3">3 tasks · 09:30</div></div></div>
+            <div class="row t3" style="opacity:.5;"><div class="row-icon t3">◌</div><div class="list-text"><div class="row-name t3">Evening wind-down</div><div class="row-meta t3">4 tasks · 21:00</div></div></div>
+            <div style="padding:14px 0;font-size:12px;color:#3d5a9e;font-family:'DM Sans',sans-serif;font-weight:500;">+ Add routine</div>
+          </div>
+        </div>
+        <div class="home-indicator t3"><div class="home-bar t3"></div></div>
+      </div>
+    </div>
+
+    <!-- THEME 4: CALM -->
+    <div class="phone">
+      <div class="theme-header">
+        <div class="theme-name" style="color:#f0ede8;">Calm</div>
+        <div class="theme-audience">wellness · mindful · nature-grounded</div>
+      </div>
+      <div class="phone-label">home</div>
+      <div class="phone-frame t4">
+        <div class="status-bar t4"><span style="font-weight:500;font-size:13px;">7:43</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t4" style="padding:16px 0 0;">
+          <div class="sp">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <div class="screen-title t4">Good morning.</div>
+              <span style="font-size:11px;color:#9ab090;">Tue</span>
+            </div>
+            <div class="screen-sub t4">3 routines, at your pace.</div>
+            <div class="tag t4">ready when you are</div>
+            <div class="mono-label t4">routines</div>
+            <div class="row t4"><div class="row-icon t4">🌿</div><div class="list-text"><div class="row-name t4">Morning</div><div class="row-meta t4">5 steps · 37 min</div></div><div class="row-badge t4">now</div></div>
+            <div class="row t4" style="opacity:.5;"><div class="row-icon t4">🍃</div><div class="list-text"><div class="row-name t4">Work flow</div><div class="row-meta t4">3 steps · 09:30</div></div></div>
+            <div class="row t4" style="opacity:.5;"><div class="row-icon t4">🌙</div><div class="list-text"><div class="row-name t4">Wind down</div><div class="row-meta t4">4 steps · 21:00</div></div></div>
+            <div style="padding:14px 0;font-size:12px;color:#4a7040;">+ Add routine</div>
+          </div>
+        </div>
+        <div class="home-indicator t4"><div class="home-bar t4"></div></div>
+      </div>
+    </div>
+
+    <!-- THEME 5: FOCUS -->
+    <div class="phone">
+      <div class="theme-header">
+        <div class="theme-name" style="color:#f0ede8;">Focus</div>
+        <div class="theme-audience">ultra-minimal · distraction-free · pro</div>
+      </div>
+      <div class="phone-label">home</div>
+      <div class="phone-frame t5">
+        <div class="status-bar t5"><span style="font-weight:500;font-size:13px;">7:43</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t5" style="padding:16px 0 0;">
+          <div class="sp">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <div class="screen-title t5">Morning.</div>
+              <span style="font-size:11px;color:#bbb;font-family:'IBM Plex Mono',monospace;">tue</span>
+            </div>
+            <div class="screen-sub t5">3 routines.</div>
+            <div class="tag t5">12 min</div>
+            <div class="mono-label t5">today</div>
+            <div class="row t5"><div class="row-icon t5">—</div><div class="list-text"><div class="row-name t5">Morning</div><div class="row-meta t5">37 min</div></div><div class="row-badge t5" style="color:#333;">active</div></div>
+            <div class="row t5" style="opacity:.4;"><div class="row-icon t5">—</div><div class="list-text"><div class="row-name t5">Work</div><div class="row-meta t5">33 min</div></div><div class="row-badge t5">09:30</div></div>
+            <div class="row t5" style="opacity:.4;"><div class="row-icon t5">—</div><div class="list-text"><div class="row-name t5">Evening</div><div class="row-meta t5">30 min</div></div><div class="row-badge t5">21:00</div></div>
+          </div>
+        </div>
+        <div class="home-indicator t5"><div class="home-bar t5"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- active step across all themes -->
+<div class="section">
+  <div class="section-title">02 — active step across all themes</div>
+  <div class="phones-row">
+
+    <!-- T1 active -->
+    <div class="phone">
+      <div class="phone-label">individual · active step</div>
+      <div class="phone-frame t1">
+        <div class="status-bar t1"><span style="font-weight:500;font-size:13px;">7:51</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t1" style="padding:0;">
+          <div class="nav t1"><span class="nav-back t1">← Morning</span><span class="nav-title t1">2 of 5</span><span></span></div>
+          <div class="sp">
+            <div class="prog t1"><div class="prog-fill t1" style="width:28%;"></div></div>
+            <div class="mono-label t1">now</div>
+            <div class="screen-title t1" style="font-size:30px;margin-bottom:16px;">Shower</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 20px;">
+              <div class="timer t1">7:23</div>
+              <div class="timer-label t1">remaining</div>
+            </div>
+            <div class="next-card t1" style="margin-bottom:16px;">
+              <div class="next-label t1">NEXT UP</div>
+              <div class="next-name t1">Get dressed · 5 min</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="btn t1 btn-s" style="margin:0;font-size:13px;padding:13px;">Done early</div>
+              <div class="btn t1 btn-s" style="margin:0;font-size:13px;padding:13px;">Need more time</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator t1"><div class="home-bar t1"></div></div>
+      </div>
+    </div>
+
+    <!-- T2 active -->
+    <div class="phone">
+      <div class="phone-label">family · active step</div>
+      <div class="phone-frame t2">
+        <div class="status-bar t2"><span style="font-weight:500;font-size:13px;">7:51</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t2" style="padding:0;">
+          <div class="nav t2"><span class="nav-back t2">← Morning</span><span class="nav-title t2">Step 2 of 5</span><span></span></div>
+          <div class="sp">
+            <div class="prog t2"><div class="prog-fill t2" style="width:28%;"></div></div>
+            <div class="mono-label t2">doing now</div>
+            <div class="screen-title t2" style="font-size:30px;margin-bottom:16px;">Shower 🚿</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 20px;">
+              <div class="timer t2">7:23</div>
+              <div class="timer-label t2">minutes left</div>
+            </div>
+            <div class="next-card t2" style="margin-bottom:16px;">
+              <div class="next-label t2">Next up</div>
+              <div class="next-name t2">Get dressed 👕 · 5 min</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="btn t2 btn-s" style="margin:0;font-size:13px;padding:13px;">Done! ✓</div>
+              <div class="btn t2 btn-s" style="margin:0;font-size:13px;padding:13px;">Need more time</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator t2"><div class="home-bar t2"></div></div>
+      </div>
+    </div>
+
+    <!-- T3 active -->
+    <div class="phone">
+      <div class="phone-label">clinical · active step</div>
+      <div class="phone-frame t3">
+        <div class="status-bar t3"><span style="font-weight:500;font-size:13px;">7:51</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t3" style="padding:0;">
+          <div class="nav t3"><span class="nav-back t3">← Morning</span><span class="nav-title t3">Task 2 of 5</span><span></span></div>
+          <div class="sp">
+            <div class="prog t3"><div class="prog-fill t3" style="width:28%;"></div></div>
+            <div class="mono-label t3">in progress</div>
+            <div class="screen-title t3" style="font-size:26px;margin-bottom:16px;">Shower</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 20px;">
+              <div class="timer t3">7:23</div>
+              <div class="timer-label t3">time remaining</div>
+            </div>
+            <div class="next-card t3" style="margin-bottom:16px;">
+              <div class="next-label t3">FOLLOWING TASK</div>
+              <div class="next-name t3">Get dressed — 5 minutes</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="btn t3 btn-s" style="margin:0;font-size:13px;padding:13px;">Completed</div>
+              <div class="btn t3 btn-s" style="margin:0;font-size:13px;padding:13px;">Extend time</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator t3"><div class="home-bar t3"></div></div>
+      </div>
+    </div>
+
+    <!-- T4 active -->
+    <div class="phone">
+      <div class="phone-label">calm · active step</div>
+      <div class="phone-frame t4">
+        <div class="status-bar t4"><span style="font-weight:500;font-size:13px;">7:51</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t4" style="padding:0;">
+          <div class="nav t4"><span class="nav-back t4">← Morning</span><span class="nav-title t4">2 of 5</span><span></span></div>
+          <div class="sp">
+            <div class="prog t4"><div class="prog-fill t4" style="width:28%;"></div></div>
+            <div class="mono-label t4">present</div>
+            <div class="screen-title t4" style="font-size:30px;margin-bottom:16px;">Shower</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 20px;">
+              <div class="timer t4">7:23</div>
+              <div class="timer-label t4">no rush</div>
+            </div>
+            <div class="next-card t4" style="margin-bottom:16px;">
+              <div class="next-label t4">coming up</div>
+              <div class="next-name t4">Get dressed · 5 min</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="btn t4 btn-s" style="margin:0;font-size:13px;padding:13px;">Done</div>
+              <div class="btn t4 btn-s" style="margin:0;font-size:13px;padding:13px;">Take more time</div>
+            </div>
+          </div>
+        </div>
+        <div class="home-indicator t4"><div class="home-bar t4"></div></div>
+      </div>
+    </div>
+
+    <!-- T5 active -->
+    <div class="phone">
+      <div class="phone-label">focus · active step</div>
+      <div class="phone-frame t5">
+        <div class="status-bar t5"><span style="font-weight:500;font-size:13px;">7:51</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t5" style="padding:0;">
+          <div class="nav t5"><span class="nav-back t5">← back</span><span class="nav-title t5" style="font-family:'IBM Plex Mono',monospace;font-size:11px;">2/5</span><span></span></div>
+          <div class="sp">
+            <div class="prog t5"><div class="prog-fill t5" style="width:28%;"></div></div>
+            <div style="height:8px;"></div>
+            <div class="screen-title t5" style="font-size:34px;margin-bottom:8px;">Shower</div>
+            <div style="font-size:11px;color:#aaa;margin-bottom:24px;font-family:'IBM Plex Mono',monospace;">10 min</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding:16px 0 24px;">
+              <div class="timer t5">7:23</div>
+            </div>
+            <div class="next-card t5" style="margin-bottom:20px;">
+              <div class="next-label t5">next</div>
+              <div class="next-name t5">Get dressed</div>
+            </div>
+            <div class="btn t5 btn-p" style="margin-bottom:8px;">done</div>
+          </div>
+        </div>
+        <div class="home-indicator t5"><div class="home-bar t5"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- pool visibility across themes -->
+<div class="section">
+  <div class="section-title">03 — pool visibility across themes</div>
+  <div class="phones-row">
+
+    <!-- T1 pools -->
+    <div class="phone">
+      <div class="phone-label">individual · pools</div>
+      <div class="phone-frame t1">
+        <div class="status-bar t1"><span style="font-weight:500;font-size:13px;">9:41</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t1" style="padding:0;">
+          <div class="nav t1"><span class="nav-back t1">← Settings</span><span class="nav-title t1">Where it goes</span><span></span></div>
+          <div class="sp">
+            <div style="background:#2a2218;border-radius:8px;padding:11px 13px;margin-bottom:18px;"><span style="font-size:11px;color:#a39589;">You're sustaining one.</span></div>
+            <div class="mono-label t1">march 2026</div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#f0ede8;">Infrastructure</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8b7f72;">€189</span></div><div style="height:3px;background:#1e1e1e;border-radius:2px;"><div style="height:3px;width:45%;background:#a39589;border-radius:2px;"></div></div><div style="font-size:10px;color:#444;margin-top:3px;">10% · servers + compute</div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#f0ede8;">Broodfonds</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8b7f72;">€94</span></div><div style="height:3px;background:#1e1e1e;border-radius:2px;"><div style="height:3px;width:22%;background:#b8864e;border-radius:2px;"></div></div><div style="font-size:10px;color:#444;margin-top:3px;">5% · income security</div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#f0ede8;">Teaching</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8b7f72;">€94</span></div><div style="height:3px;background:#1e1e1e;border-radius:2px;"><div style="height:3px;width:22%;background:#4a7c5e;border-radius:2px;"></div></div><div style="font-size:10px;color:#444;margin-top:3px;">5% · open workshops</div></div>
+            <div style="margin-bottom:18px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#f0ede8;">Public Good</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8b7f72;">€94</span></div><div style="height:3px;background:#1e1e1e;border-radius:2px;"><div style="height:3px;width:22%;background:#6a7a8a;border-radius:2px;"></div></div><div style="font-size:10px;color:#444;margin-top:3px;">5% · voted quarterly</div></div>
+            <div style="font-size:10px;color:#444;line-height:1.6;">Updated monthly from the one public ledger.</div>
+          </div>
+        </div>
+        <div class="home-indicator t1"><div class="home-bar t1"></div></div>
+      </div>
+    </div>
+
+    <!-- T2 pools -->
+    <div class="phone">
+      <div class="phone-label">family · pools</div>
+      <div class="phone-frame t2">
+        <div class="status-bar t2"><span style="font-weight:500;font-size:13px;">9:41</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t2" style="padding:0;">
+          <div class="nav t2"><span class="nav-back t2">← Settings</span><span class="nav-title t2">Where it goes</span><span></span></div>
+          <div class="sp">
+            <div style="background:rgba(196,122,58,0.1);border-radius:10px;padding:11px 13px;margin-bottom:18px;border:1px solid rgba(196,122,58,0.15);"><span style="font-size:11px;color:#c47a3a;font-family:'Nunito',sans-serif;font-weight:500;">You're supporting one every month.</span></div>
+            <div class="mono-label t2">march 2026</div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#2c2118;font-family:'Nunito',sans-serif;font-weight:500;">Infrastructure</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#c47a3a;">€189</span></div><div style="height:4px;background:#ede5d8;border-radius:3px;"><div style="height:4px;width:45%;background:#c47a3a;border-radius:3px;"></div></div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#2c2118;font-family:'Nunito',sans-serif;font-weight:500;">Broodfonds</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#c47a3a;">€94</span></div><div style="height:4px;background:#ede5d8;border-radius:3px;"><div style="height:4px;width:22%;background:#d4945e;border-radius:3px;"></div></div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#2c2118;font-family:'Nunito',sans-serif;font-weight:500;">Teaching</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#c47a3a;">€94</span></div><div style="height:4px;background:#ede5d8;border-radius:3px;"><div style="height:4px;width:22%;background:#5e9664;border-radius:3px;"></div></div></div>
+            <div style="margin-bottom:18px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#2c2118;font-family:'Nunito',sans-serif;font-weight:500;">Public Good</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#c47a3a;">€94</span></div><div style="height:4px;background:#ede5d8;border-radius:3px;"><div style="height:4px;width:22%;background:#8a9abd;border-radius:3px;"></div></div></div>
+            <div style="font-size:11px;color:#9a8878;font-family:'Nunito',sans-serif;line-height:1.6;">Real money. Real people. Updated every month.</div>
+          </div>
+        </div>
+        <div class="home-indicator t2"><div class="home-bar t2"></div></div>
+      </div>
+    </div>
+
+    <!-- T3 pools -->
+    <div class="phone">
+      <div class="phone-label">clinical · pools</div>
+      <div class="phone-frame t3">
+        <div class="status-bar t3"><span style="font-weight:500;font-size:13px;">9:41</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t3" style="padding:0;">
+          <div class="nav t3"><span class="nav-back t3">← Settings</span><span class="nav-title t3">Funding allocation</span><span></span></div>
+          <div class="sp">
+            <div style="background:#f0f2f9;border-radius:8px;padding:11px 13px;margin-bottom:18px;"><span style="font-size:11px;color:#3d5a9e;font-family:'DM Sans',sans-serif;font-weight:500;">Active institutional subscriber — since Jan 2026</span></div>
+            <div class="mono-label t3">Q1 2026 · 412 subscribers</div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#1a2035;font-family:'DM Sans',sans-serif;font-weight:500;">Infrastructure</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3d5a9e;">10% · €189/mo</span></div><div style="height:3px;background:#edf0f7;border-radius:2px;"><div style="height:3px;width:45%;background:#3d5a9e;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#1a2035;font-family:'DM Sans',sans-serif;font-weight:500;">Broodfonds</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3d5a9e;">5% · €94/mo</span></div><div style="height:3px;background:#edf0f7;border-radius:2px;"><div style="height:3px;width:22%;background:#7a8fbe;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#1a2035;font-family:'DM Sans',sans-serif;font-weight:500;">Teaching</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3d5a9e;">5% · €94/mo</span></div><div style="height:3px;background:#edf0f7;border-radius:2px;"><div style="height:3px;width:22%;background:#4a8a5e;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:18px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:#1a2035;font-family:'DM Sans',sans-serif;font-weight:500;">Public Good</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3d5a9e;">5% · €94/mo</span></div><div style="height:3px;background:#edf0f7;border-radius:2px;"><div style="height:3px;width:22%;background:#6a7a8a;border-radius:2px;"></div></div></div>
+            <div style="font-size:10px;color:#8a90a4;font-family:'DM Sans',sans-serif;line-height:1.6;">Verified via one public ledger. Auditable. Updated monthly minimum.</div>
+          </div>
+        </div>
+        <div class="home-indicator t3"><div class="home-bar t3"></div></div>
+      </div>
+    </div>
+
+    <!-- T4 pools -->
+    <div class="phone">
+      <div class="phone-label">calm · pools</div>
+      <div class="phone-frame t4">
+        <div class="status-bar t4"><span style="font-weight:500;font-size:13px;">9:41</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t4" style="padding:0;">
+          <div class="nav t4"><span class="nav-back t4">← Settings</span><span class="nav-title t4">Where it goes</span><span></span></div>
+          <div class="sp">
+            <div style="background:rgba(74,112,64,0.1);border-radius:10px;padding:11px 13px;margin-bottom:18px;"><span style="font-size:11px;color:#4a7040;">You're sustaining something good.</span></div>
+            <div class="mono-label t4">march 2026</div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:#283022;">Infrastructure</span><span style="font-size:11px;color:#7a9070;">€189</span></div><div style="height:3px;background:#dde8d5;border-radius:2px;"><div style="height:3px;width:45%;background:#6b8e5e;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:#283022;">Broodfonds</span><span style="font-size:11px;color:#7a9070;">€94</span></div><div style="height:3px;background:#dde8d5;border-radius:2px;"><div style="height:3px;width:22%;background:#9aae7e;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:#283022;">Teaching</span><span style="font-size:11px;color:#7a9070;">€94</span></div><div style="height:3px;background:#dde8d5;border-radius:2px;"><div style="height:3px;width:22%;background:#4a7040;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:18px;"><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:#283022;">Public Good</span><span style="font-size:11px;color:#7a9070;">€94</span></div><div style="height:3px;background:#dde8d5;border-radius:2px;"><div style="height:3px;width:22%;background:#7a9aaa;border-radius:2px;"></div></div></div>
+            <div style="font-size:11px;color:#7a9070;line-height:1.6;">Every euro goes somewhere real. Transparent by design.</div>
+          </div>
+        </div>
+        <div class="home-indicator t4"><div class="home-bar t4"></div></div>
+      </div>
+    </div>
+
+    <!-- T5 pools -->
+    <div class="phone">
+      <div class="phone-label">focus · pools</div>
+      <div class="phone-frame t5">
+        <div class="status-bar t5"><span style="font-weight:500;font-size:13px;">9:41</span><div class="dyn-island"></div><span class="status-icons">●●●</span></div>
+        <div class="screen t5" style="padding:0;">
+          <div class="nav t5"><span class="nav-back t5">← back</span><span class="nav-title t5" style="font-family:'IBM Plex Mono',monospace;font-size:11px;">allocation</span><span></span></div>
+          <div class="sp">
+            <div style="margin-bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#888;letter-spacing:1px;">412 subscribers · mar 2026</div>
+            <div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;color:#111;font-weight:300;">Infrastructure</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#888;">10%</span></div><div style="height:2px;background:#e0e0e0;border-radius:2px;"><div style="height:2px;width:45%;background:#888;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;color:#111;font-weight:300;">Broodfonds</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#888;">5%</span></div><div style="height:2px;background:#e0e0e0;border-radius:2px;"><div style="height:2px;width:22%;background:#aaa;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;color:#111;font-weight:300;">Teaching</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#888;">5%</span></div><div style="height:2px;background:#e0e0e0;border-radius:2px;"><div style="height:2px;width:22%;background:#aaa;border-radius:2px;"></div></div></div>
+            <div style="margin-bottom:24px;"><div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;color:#111;font-weight:300;">Public Good</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#888;">5%</span></div><div style="height:2px;background:#e0e0e0;border-radius:2px;"><div style="height:2px;width:22%;background:#aaa;border-radius:2px;"></div></div></div>
+            <div style="font-size:10px;color:#bbb;font-family:'IBM Plex Mono',monospace;line-height:1.6;">public ledger · updated monthly</div>
+          </div>
+        </div>
+        <div class="home-indicator t5"><div class="home-bar t5"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
